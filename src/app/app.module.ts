@@ -11,9 +11,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuardService } from './sevices/auth-guard.service';
 import { AuthService } from './sevices/auth.service';
-import { ProductsService } from './products.service';
 import { RouterModule, Routes } from '@angular/router';
 import { OneProductComponent } from './menu-list/one-product/one-product.component';
+import { ProductsService } from './sevices/products.service';
 
 const appRoutes : Routes = [
   { path: "auth/login", component: LoginComponent},
