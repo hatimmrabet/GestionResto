@@ -9,10 +9,6 @@ export class AppComponent {
   title = 'My Restaurant';
   isAuth = false;
 
-  app1 = 'App 1 1';
-  app2 = 'App 22';
-  app3 = 'App 33';
-
   appareils = [
     {
       name: 'Machine à laver',

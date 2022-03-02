@@ -1,11 +1,4 @@
+<app-header></app-header>
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h2 >Les appareils</h2>
-      <ul class="list-group">
-        <app-appareil *ngFor="let appareil of appareils" [appName]="appareil.name" [appStatus]="appareil.status"></app-appareil>
-       </ul>
-      <button class="btn btn-success" [disabled]="!isAuth" (click)="onAllumer()">Tout allumer</button>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </div>
