@@ -6,7 +6,12 @@ import { Product } from '../models/product.model';
 })
 export class ProductsService {
   /** Tous les produits */
-  private products: Product[] = [];
+  private products: Product[] = [
+    new Product('Burger', 15.99),
+    new Product('Frites', 2.99),
+    new Product('Pizza', 10.99),
+    new Product('chicken', 10),
+  ];
 
   addProduct(prod: Product) {
     this.products.push(prod);
