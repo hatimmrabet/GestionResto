@@ -4,15 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MenuListComponent } from './menu-list/menu-list.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { MenuListComponent } from './components/menu-list/menu-list.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthGuardService } from './sevices/auth-guard.service';
 import { AuthService } from './sevices/auth.service';
 import { RouterModule, Routes } from '@angular/router';
-import { OneProductComponent } from './menu-list/one-product/one-product.component';
+import { OneProductComponent } from './components/menu-list/one-product/one-product.component';
 import { ProductsService } from './sevices/products.service';
 
 const appRoutes : Routes = [
