@@ -14,6 +14,7 @@ import { AuthService } from './sevices/auth.service';
 import { RouterModule, Routes } from '@angular/router';
 import { OneProductComponent } from './components/menu-list/one-product/one-product.component';
 import { ProductsService } from './sevices/products.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const appRoutes : Routes = [
   { path: "auth/login", component: LoginComponent},
@@ -39,7 +40,8 @@ const appRoutes : Routes = [
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FontAwesomeModule
   ],
   providers: [
     AuthGuardService,

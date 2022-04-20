@@ -1,25 +1,80 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<div class="wrap">
   <div class="container">
-    <a class="navbar-brand" routerLink="products">MyResto</a>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="products"
-            >Home <span class="sr-only">(current)</span></a
-          >
-        </li>
-      </ul>
+    <div class="row justify-content-between">
+      <div class="col">
+        <p class="mb-0 phone">
+          <i class="fa fa-phone" style="color: white;"></i><a href="#">+00 1234 567</a>
+        </p>
+      </div>
+      <div class="col d-flex justify-content-end">
+        <div class="social-media">
+          <p class="mb-0 d-flex">
+            <a href="#" class="d-flex align-items-center justify-content-center"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="#" class="d-flex align-items-center justify-content-center"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#" class="d-flex align-items-center justify-content-center"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="d-flex align-items-center justify-content-center"
+              ><i class="fab fa-dribbble"></i
+            ></a>
+          </p>
+        </div>
+      </div>
     </div>
-
-    <div class="navbar-nav navbar-rigth">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="auth/login">Se connecter</a>
+  </div>
+</div>
+<nav
+  class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+  id="ftco-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Papermag <span>Magazine</span></a>
+    <form action="#" class="searchform order-sm-start order-lg-last">
+      <div class="form-group d-flex">
+        <input type="text" class="form-control pl-3" placeholder="Search" />
+        <button type="submit" placeholder="" class="form-control search">
+          <span class="fa fa-search"></span>
+        </button>
+      </div>
+    </form>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#ftco-nav"
+      aria-controls="ftco-nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="fa fa-bars"></span> Menu
+    </button>
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="dropdown04"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Page</a
+          >
+          <div class="dropdown-menu" aria-labelledby="dropdown04">
+            <a class="dropdown-item" href="#">Page 1</a>
+            <a class="dropdown-item" href="#">Page 2</a>
+            <a class="dropdown-item" href="#">Page 3</a>
+            <a class="dropdown-item" href="#">Page 4</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="auth/signup">S'inscrire</a>
-        </li>
+        <li class="nav-item"><a href="#" class="nav-link">Catalog</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </div>
