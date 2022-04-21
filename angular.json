@@ -56,13 +56,23 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/animate.css/animate.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/boxicons/css/boxicons.min.css",
+              "node_modules/glightbox/dist/css/glightbox.min.css",
+              "node_modules/swiper/swiper-bundle.min.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+
+              "node_modules/glightbox/dist/js/glightbox.min.js",
+              "node_modules/swiper/swiper-bundle.min.js",
+              "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
+              "src/assets/main.js"
             ]
           },
           "configurations": {

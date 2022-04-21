@@ -2,24 +2,33 @@
   <div class="container">
     <div class="row justify-content-between">
       <div class="col">
-        <p class="mb-0 phone">
-          <i class="fa fa-phone" style="color: white;"></i><a href="#">+00 1234 567</a>
-        </p>
+        <div class="mb-0 phone" style="margin-top: 3px">
+          <i class="bi bi-phone" style="color: white"></i
+          ><a routerLink="#" style="margin-left: 10px">+33 6 18 25 67 37</a>
+        </div>
       </div>
       <div class="col d-flex justify-content-end">
         <div class="social-media">
           <p class="mb-0 d-flex">
-            <a href="#" class="d-flex align-items-center justify-content-center"
-              ><i class="fab fa-facebook"></i
+            <a
+              routerLink="#"
+              class="d-flex align-items-center justify-content-center"
+              ><i class="bi bi-facebook"></i
             ></a>
-            <a href="#" class="d-flex align-items-center justify-content-center"
-              ><i class="fab fa-twitter"></i
+            <a
+              routerLink="#"
+              class="d-flex align-items-center justify-content-center"
+              ><i class="bi bi-twitter"></i
             ></a>
-            <a href="#" class="d-flex align-items-center justify-content-center"
-              ><i class="fab fa-instagram"></i
+            <a
+              routerLink="#"
+              class="d-flex align-items-center justify-content-center"
+              ><i class="bi bi-instagram"></i
             ></a>
-            <a href="#" class="d-flex align-items-center justify-content-center"
-              ><i class="fab fa-dribbble"></i
+            <a
+              routerLink="#"
+              class="d-flex align-items-center justify-content-center"
+              ><i class="bi bi-person-circle"></i
             ></a>
           </p>
         </div>
@@ -32,7 +41,9 @@
   id="ftco-navbar"
 >
   <div class="container">
-    <a class="navbar-brand" href="index.html">Papermag <span>Magazine</span></a>
+    <a class="navbar-brand" routerLink="index.html"
+      >Papermag <span>Magazine</span></a
+    >
     <form action="#" class="searchform order-sm-start order-lg-last">
       <div class="form-group d-flex">
         <input type="text" class="form-control pl-3" placeholder="Search" />
@@ -54,11 +65,13 @@
     </button>
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav m-auto">
-        <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+        <li class="nav-item active">
+          <a routerLink="#" class="nav-link">Home</a>
+        </li>
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            href="#"
+            routerLink="#"
             id="dropdown04"
             data-toggle="dropdown"
             aria-haspopup="true"
@@ -66,15 +79,15 @@
             >Page</a
           >
           <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <a class="dropdown-item" href="#">Page 1</a>
-            <a class="dropdown-item" href="#">Page 2</a>
-            <a class="dropdown-item" href="#">Page 3</a>
-            <a class="dropdown-item" href="#">Page 4</a>
+            <a class="dropdown-item" routerLink="#">Page 1</a>
+            <a class="dropdown-item" routerLink="#">Page 2</a>
+            <a class="dropdown-item" routerLink="#">Page 3</a>
+            <a class="dropdown-item" routerLink="#">Page 4</a>
           </div>
         </li>
-        <li class="nav-item"><a href="#" class="nav-link">Catalog</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a routerLink="#" class="nav-link">Catalog</a></li>
+        <li class="nav-item"><a routerLink="#" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a routerLink="#" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </div>

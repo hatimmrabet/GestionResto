@@ -11,10 +11,9 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthGuardService } from './sevices/auth-guard.service';
 import { AuthService } from './sevices/auth.service';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { OneProductComponent } from './components/menu-list/one-product/one-product.component';
 import { ProductsService } from './sevices/products.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const appRoutes : Routes = [
   { path: "auth/login", component: LoginComponent},
@@ -24,6 +23,11 @@ const appRoutes : Routes = [
   { path: "**", redirectTo : "products"},
 
 ]
+
+const routerOptions: ExtraOptions = {
+  useHash: false,
+  anchorScrolling: 'enabled',
+};
 
 @NgModule({
   declarations: [
@@ -40,8 +44,7 @@ const appRoutes : Routes = [
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
-    FontAwesomeModule
+    RouterModule.forRoot(appRoutes, routerOptions)
   ],
   providers: [
     AuthGuardService,
