@@ -1,0 +1,122 @@
+<app-public-header></app-public-header>
+
+<div class="container">
+  <!-- Pills content -->
+
+
+  <!-- Login tab -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <div class="row">
+            <!-- Debut image gauche -->
+            <div class="col-lg-6 d-none d-lg-block" style="
+                    background: url('assets/img/cover1.jpg');
+                    background-position: center;
+                    background-size: cover;
+                    ">
+            </div>
+            <!-- Fin image -->
+
+            <div class="col-lg-6 tab-content">
+              <!-- loggin tab -->
+              <div class="tab-pane fade show active p-5" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                <div class="text-center">
+                  <h3 class="m-3">Login</h3>
+                </div>
+                <!-- Formulaire -->
+                <form>
+                  <div class="user mb-5">
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                      <label for="floatingPassword">Password</label>
+                    </div>
+                    <input type="submit" name="submit" value="Se connecter"
+                      class="btn btn-primary btn-user btn-block font-weight-bold mt-3" style="
+                          border-radius: 0.35rem;
+                          font-size: 16px;
+                          padding: 0.5rem 1rem;
+                        " />
+                  </div>
+                </form>
+                <!-- Fin form -->
+              </div>
+              <!-- Fin tab login -->
+
+              <!-- debut tab signup -->
+              <div class="tab-pane fade show p-5" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                <div class="text-center">
+                  <h3 class="m-3">Register</h3>
+                </div>
+                <!-- Formulaire -->
+                <form class="needs-validation" novalidate>
+                  <div class="row g-3">
+                    <div class="col-sm-6 ">
+                      <label for="firstName" class="form-label">First name</label>
+                      <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                        Valid first name is required.
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <label for="lastName" class="form-label">Last name</label>
+                      <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                        Valid last name is required.
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                      <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="address" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                      <div class="invalid-feedback">
+                        Please enter your shipping address.
+                      </div>
+                    </div>
+                  </div>
+
+                  <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                </form>
+                <!-- Fin form -->
+              </div>
+              <!-- fin tab sign up -->
+
+              <!-- Pills navs -->
+              <div class="px-5 mb-3">
+                <ul class="nav nav-pills nav-justified" id="ex1">
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="tab-login" data-bs-toggle="pill" href="#pills-login" role="tab"
+                      aria-controls="pills-login" aria-selected="true">Login</a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="tab-register" data-bs-toggle="pill" href="#pills-register" role="tab"
+                      aria-controls="pills-register" aria-selected="false">Register</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Fin Pills navs -->
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-public-footer></app-public-footer>

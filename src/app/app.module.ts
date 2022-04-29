@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthGuardService } from './sevices/auth-guard.service';
 import { AuthService } from './sevices/auth.service';
@@ -19,12 +18,13 @@ import { PublicAccueilMenuComponent } from './components/public-accueil/menu/men
 import { PublicAccueilPresentationComponent } from './components/public-accueil/presentation/presentation.component';
 import { PublicAccueilGalleryComponent } from './components/public-accueil/gallery/gallery.component';
 import { PublicAccueilContactComponent } from './components/public-accueil/contact/contact.component';
+import { LoginComponent } from './components/login/login.component';
 
 const appRoutes : Routes = [
-  { path: "auth/login", component: LoginComponent},
   { path: "auth/signup", component: SignupComponent},
   { path: "products/:id", component: OneProductComponent},
   { path: "index", component: PublicAccueilComponent},
+  { path: "login", component: LoginComponent},
   { path: "**", redirectTo : "index"},
 ]
 
