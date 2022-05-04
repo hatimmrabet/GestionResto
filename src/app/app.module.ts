@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/auth/signup/signup.component';
-import { AuthGuardService } from './sevices/auth-guard.service';
-import { AuthService } from './sevices/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { OneProductComponent } from './components/one-product/one-product.component';
-import { ProductsService } from './sevices/products.service';
+import { ProductsService } from './services/products.service';
 import { PublicHeaderComponent } from './components/public-header/public-header.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
 import { PublicFooterComponent } from './components/public-footer/public-footer.component';
@@ -53,6 +53,7 @@ const routerOptions: ExtraOptions = {
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes, routerOptions)
   ],
   providers: [
