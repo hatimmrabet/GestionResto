@@ -37,28 +37,33 @@
               <!-- Fin Pills navs -->
 
               <!-- loggin tab -->
-              <div class="tab-pane fade  py-4 px-5 show active " id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+              <div class="tab-pane fade  py-4 px-5 show active " id="pills-login" role="tabpanel"
+                aria-labelledby="tab-login">
+
+                <div *ngIf="alert.message!=''" [ngClass]="'alert alert-'+alert.type" role="alert">
+                  {{alert.message}}
+                </div>
+
                 <div class="text-center">
                   <h3 class="m-3">Login</h3>
                 </div>
                 <!-- Formulaire -->
                 <div class="user">
-                  <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
                     <div class="form-group mb-2">
                       <label class="font-weight-bold">Adresse mail :</label>
-                      <input type="text" name="email" id="email" formControlName="email" placeholder="Votre adresse mail" class="form-control"
-                        style="border-radius: 0.35rem;">
+                      <input type="text" name="email" id="email1" formControlName="email"
+                        placeholder="Votre adresse mail" class="form-control" style="border-radius: 0.35rem;">
                     </div>
                     <div class="form-group mb-2">
                       <label class="font-weight-bold">Mot de passe :</label>
-                      <input type="password" name="password" id="password" formControlName="password" placeholder="Votre mot de passe" class="form-control"
-                        style="border-radius: 0.35rem;">
+                      <input type="password" name="password" id="password1" formControlName="password"
+                        placeholder="Votre mot de passe" class="form-control" style="border-radius: 0.35rem;">
                     </div>
                     <div class="form-group">
                       <input type="submit" name="submit" value="se connecter"
                         class="btn btn-dark btn-sm font-weight-bold w-100 mt-1"
-                        style="border-radius: 0.25rem; font-size: 16px;"
-                        [disabled]="userForm.invalid"/>
+                        style="border-radius: 0.25rem; font-size: 16px;" [disabled]="loginForm.invalid" />
                     </div>
                   </form>
                 </div>
@@ -67,54 +72,59 @@
               <!-- Fin tab login -->
 
               <!-- debut tab signup -->
-              <div class="tab-pane fade show py-4 px-5" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+              <div class="tab-pane fade show py-4 px-5" id="pills-register" role="tabpanel"
+                aria-labelledby="tab-register">
+                <div *ngIf="alert.message!=''" [ngClass]="'alert alert-'+alert.type" role="alert">
+                  {{alert.message}}
+                </div>
                 <div class="text-center">
                   <h3 class="m-3">Register</h3>
                 </div>
                 <!-- Formulaire -->
                 <div class="user">
-                  <form>
+                  <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()">
                     <div class="row">
                       <div class="form-group col-md-6 mb-2">
                         <label class="font-weight-bold">Nom :</label>
-                        <input type="text" name="numDossier" placeholder="Joe" class="form-control"
-                          style="border-radius: 0.35rem;">
+                        <input type="text" id="lastName" formControlName="lastName" placeholder="Joe"
+                          class="form-control" style="border-radius: 0.35rem;">
                       </div>
                       <div class="form-group col-md-6 mb-2">
                         <label class="font-weight-bold">Prenom :</label>
-                        <input type="text" name="numDossier" placeholder="Biden" class="form-control"
-                          style="border-radius: 0.35rem;">
+                        <input type="text" id="firstName" formControlName="firstName" placeholder="Biden"
+                          class="form-control" style="border-radius: 0.35rem;">
                       </div>
                     </div>
                     <div class="form-group mb-2">
                       <label class="font-weight-bold">Adresse mail :</label>
-                      <input type="text" name="numDossier" placeholder="joe@gmail.com" class="form-control"
-                        style="border-radius: 0.35rem;">
-                    </div>
-                    <div class="form-group mb-2">
-                      <label class="font-weight-bold">Mot de passe :</label>
-                      <input type="password" name="numCand" placeholder="******" class="form-control"
-                        style="border-radius: 0.35rem;">
-                    </div>
-                    <div class="form-group mb-2">
-                      <label class="font-weight-bold">Adresse postale :</label>
-                      <input type="text" name="numCand" placeholder="20 rue de la route, 59800, Lille"
+                      <input type="text" id="email2" formControlName="email" placeholder="joe@gmail.com"
                         class="form-control" style="border-radius: 0.35rem;">
                     </div>
                     <div class="form-group mb-2">
-                      <label class="font-weight-bold">Numero de telephone :</label>
-                      <input type="tel" pattern="[0-9]*" name="numCand" placeholder="060000001" class="form-control"
+                      <label class="font-weight-bold">Mot de passe :</label>
+                      <input type="password" id="password2" formControlName="password" placeholder="******"
+                        class="form-control" style="border-radius: 0.35rem;">
+                    </div>
+                    <div class="form-group mb-2">
+                      <label class="font-weight-bold">Adresse postale :</label>
+                      <input type="text" id="address" formControlName="address"
+                        placeholder="20 rue de la route, 59800, Lille" class="form-control"
                         style="border-radius: 0.35rem;">
                     </div>
                     <div class="form-group mb-2">
+                      <label class="font-weight-bold">Numero de telephone :</label>
+                      <input type="tel" pattern="[0-9]*" id="phoneNumber" formControlName="phoneNumber"
+                        placeholder="060000001" class="form-control" style="border-radius: 0.35rem;">
+                    </div>
+                    <div class="form-group mb-2">
                       <label class="font-weight-bold">date de naissance :</label>
-                      <input type="date" name="numCand" placeholder="30/06/2000" class="form-control"
-                        style="border-radius: 0.35rem;">
+                      <input type="date" id="birthDate" formControlName="birthDate" placeholder="30/06/2000"
+                        class="form-control" style="border-radius: 0.35rem;">
                     </div>
                     <div class="form-group">
                       <input type="submit" name="submit" value="s'inscrire"
                         class="btn btn-dark btn-sm font-weight-bold w-100 mt-1"
-                        style="border-radius: 0.25rem; font-size: 16px;" />
+                        style="border-radius: 0.25rem; font-size: 16px;" [disabled]="signupForm.invalid" />
                     </div>
                   </form>
                 </div>

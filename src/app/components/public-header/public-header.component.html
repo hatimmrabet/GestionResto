@@ -4,33 +4,24 @@
     <div class="row justify-content-between">
       <div class="col">
         <div class="mb-0 phone" style="margin-top: 3px">
-          <i class="bi bi-phone" style="color: white"></i
-          ><a routerLink="#" style="margin-left: 10px">+33 6 18 25 67 37</a>
+          <i class="bi bi-phone" style="color: white"></i><a routerLink="#" style="margin-left: 10px">+33 6 18 25 67
+            37</a>
         </div>
       </div>
       <div class="col d-flex justify-content-end">
         <div class="social-media">
           <p class="mb-0 d-flex">
-            <a
-              routerLink="#"
-              class="d-flex align-items-center justify-content-center"
-              ><i class="bi bi-facebook"></i
-            ></a>
-            <a
-              routerLink="#"
-              class="d-flex align-items-center justify-content-center"
-              ><i class="bi bi-twitter"></i
-            ></a>
-            <a
-              routerLink="#"
-              class="d-flex align-items-center justify-content-center"
-              ><i class="bi bi-instagram"></i
-            ></a>
-            <a
-              routerLink="/login"
-              class="d-flex align-items-center justify-content-center"
-              ><i class="bi bi-person-circle"></i
-            ></a>
+            <a routerLink="#" class="d-flex align-items-center justify-content-center"><i
+                class="bi bi-facebook"></i></a>
+            <a routerLink="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+            <a routerLink="#" class="d-flex align-items-center justify-content-center"><i
+                class="bi bi-instagram"></i></a>
+            <a *ngIf="isLoggedIn" routerLink="/profil" class="d-flex align-items-center justify-content-center"><i
+                class="bi bi-person-circle"></i></a>
+            <a *ngIf="!isLoggedIn" routerLink="/login" class="d-flex align-items-center justify-content-center"><i
+                class="bi bi-person-circle"></i></a>
+            <a *ngIf="isLoggedIn" routerLink="" (click)="signOut()"
+              class="d-flex align-items-center justify-content-center"><i class="bi bi-box-arrow-right"></i></a>
           </p>
         </div>
       </div>
@@ -39,10 +30,7 @@
 </div>
 
 <!-- navbar -->
-<nav
-  class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-  id="ftco-navbar"
->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container">
     <a class="navbar-brand" routerLink=""><img src="assets/img/logo/logo_black.png" style="width: 75px;" /></a>
     <form action="#" class="searchform order-sm-start order-lg-last">
@@ -53,15 +41,8 @@
         </button>
       </div>
     </form>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#ftco-nav"
-      aria-controls="ftco-nav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="fa fa-bars"></span> Menu
     </button>
     <div class="collapse navbar-collapse" id="ftco-nav">
@@ -70,15 +51,8 @@
           <a routerLink="#" class="nav-link">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            routerLink="#"
-            id="dropdown04"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            >Page</a
-          >
+          <a class="nav-link dropdown-toggle" routerLink="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Page</a>
           <div class="dropdown-menu" aria-labelledby="dropdown04">
             <a class="dropdown-item" routerLink="#">Page 1</a>
             <a class="dropdown-item" routerLink="#">Page 2</a>

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/auth/signup/signup.component';
-import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { OneProductComponent } from './components/one-product/one-product.component';
@@ -19,14 +18,24 @@ import { PublicAccueilPresentationComponent } from './components/public-accueil/
 import { PublicAccueilGalleryComponent } from './components/public-accueil/gallery/gallery.component';
 import { PublicAccueilContactComponent } from './components/public-accueil/contact/contact.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfilComponent } from './components/profil/profil.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
-const appRoutes : Routes = [
-  { path: "auth/signup", component: SignupComponent},
-  { path: "products/:id", component: OneProductComponent},
-  { path: "index", component: PublicAccueilComponent},
-  { path: "login", component: LoginComponent},
-  { path: "**", redirectTo : "index"},
-]
+const appRoutes: Routes = [
+  {
+    path: 'auth/signup',
+    component: SignupComponent,
+  },
+  { path: 'products', component: OneProductComponent },
+  { path: 'index', component: PublicAccueilComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'profil',
+    canActivate: [AuthGuardService],
+    component: ProfilComponent,
+  },
+  { path: '**', redirectTo: 'index' },
+];
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -46,7 +55,8 @@ const routerOptions: ExtraOptions = {
     PublicAccueilMenuComponent,
     PublicAccueilPresentationComponent,
     PublicAccueilGalleryComponent,
-    PublicAccueilContactComponent
+    PublicAccueilContactComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,13 +64,9 @@ const routerOptions: ExtraOptions = {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, routerOptions)
+    RouterModule.forRoot(appRoutes, routerOptions),
   ],
-  providers: [
-    AuthGuardService,
-    AuthService,
-    ProductsService
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService, ProductsService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
