@@ -40,8 +40,10 @@
               <div class="tab-pane fade  py-4 px-5 show active " id="pills-login" role="tabpanel"
                 aria-labelledby="tab-login">
 
-                <div *ngIf="alert.message!=''" [ngClass]="'alert alert-'+alert.type" role="alert">
+                <div *ngIf="alert.message!=''" [ngClass]="'alert alert-'+alert.type+' alert-dismissible fade show text-center'"
+                  role="alert">
                   {{alert.message}}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 
                 <div class="text-center">
@@ -75,9 +77,13 @@
               <!-- debut tab signup -->
               <div class="tab-pane fade show py-4 px-5" id="pills-register" role="tabpanel"
                 aria-labelledby="tab-register">
-                <div *ngIf="alert.message!=''" [ngClass]="'alert alert-'+alert.type" role="alert">
+
+                <div *ngIf="alert.message!=''" [ngClass]="'alert alert-'+alert.type+' alert-dismissible fade show text-center'"
+                  role="alert">
                   {{alert.message}}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+
                 <div class="text-center">
                   <h3 class="m-3">Register</h3>
                 </div>

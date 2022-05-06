@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
           type: 'danger',
           message: 'Email ou mot de passe sont incorrects',
         };
-        console.log('erreur Login componenet');
+        // console.log('erreur Login componenet');
       }
     );
   }
@@ -81,15 +81,13 @@ export class LoginComponent implements OnInit {
       formValue['birthDate']
     );
     this.authService.signUpUser(user).then(
-      () => {
-        this.alert = { type: 'success', message: 'Votre compte a été créé' };
+      (response: any)  => {
+        this.alert = { type: 'success', message: response.message };
+        // console.log(response)
       },
       (error) => {
-        if(error.status === 400) {
-          this.alert = { type: 'danger', message: 'Les données saisies sont incorrectes' };
-        } else {
-          this.alert = { type: 'danger', message: error.error.message };
-        }
+        this.alert = { type: 'danger', message: error.error.error };
+        // console.log(error);
       }
     );
   }
