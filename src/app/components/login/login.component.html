@@ -51,14 +51,15 @@
                 <div class="user">
                   <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
                     <div class="form-group mb-2">
-                      <label class="font-weight-bold">Adresse mail :</label>
+                      <label>Adresse mail</label>
                       <input type="text" name="email" id="email1" formControlName="email"
-                        placeholder="Votre adresse mail" class="form-control" style="border-radius: 0.35rem;">
+                        placeholder="Votre adresse mail" class="form-control">
                     </div>
                     <div class="form-group mb-2">
-                      <label class="font-weight-bold">Mot de passe :</label>
+                      <label>Mot de passe</label>
                       <input type="password" name="password" id="password1" formControlName="password"
-                        placeholder="Votre mot de passe" class="form-control" style="border-radius: 0.35rem;">
+                        placeholder="Votre mot de passe" class="form-control">
+
                     </div>
                     <div class="form-group">
                       <input type="submit" name="submit" value="se connecter"
@@ -85,41 +86,40 @@
                   <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()">
                     <div class="row">
                       <div class="form-group col-md-6 mb-2">
-                        <label class="font-weight-bold">Nom :</label>
+                        <label>Nom</label>
                         <input type="text" id="lastName" formControlName="lastName" placeholder="Joe"
-                          class="form-control" style="border-radius: 0.35rem;">
+                          class="form-control">
                       </div>
                       <div class="form-group col-md-6 mb-2">
-                        <label class="font-weight-bold">Prenom :</label>
+                        <label>Prenom</label>
                         <input type="text" id="firstName" formControlName="firstName" placeholder="Biden"
-                          class="form-control" style="border-radius: 0.35rem;">
+                          class="form-control">
                       </div>
                     </div>
                     <div class="form-group mb-2">
-                      <label class="font-weight-bold">Adresse mail :</label>
+                      <label>Adresse mail</label>
                       <input type="text" id="email2" formControlName="email" placeholder="joe@gmail.com"
-                        class="form-control" style="border-radius: 0.35rem;">
+                        class="form-control">
                     </div>
                     <div class="form-group mb-2">
-                      <label class="font-weight-bold">Mot de passe :</label>
+                      <label>Mot de passe</label>
                       <input type="password" id="password2" formControlName="password" placeholder="******"
-                        class="form-control" style="border-radius: 0.35rem;">
+                        class="form-control">
                     </div>
                     <div class="form-group mb-2">
-                      <label class="font-weight-bold">Adresse postale :</label>
+                      <label>Adresse postale</label>
                       <input type="text" id="address" formControlName="address"
-                        placeholder="20 rue de la route, 59800, Lille" class="form-control"
-                        style="border-radius: 0.35rem;">
+                        placeholder="20 rue de la route, 59800, Lille" class="form-control">
                     </div>
                     <div class="form-group mb-2">
-                      <label class="font-weight-bold">Numero de telephone :</label>
+                      <label>Numero de telephone</label>
                       <input type="tel" pattern="[0-9]*" id="phoneNumber" formControlName="phoneNumber"
-                        placeholder="060000001" class="form-control" style="border-radius: 0.35rem;">
+                        placeholder="060000001" class="form-control">
                     </div>
                     <div class="form-group mb-2">
-                      <label class="font-weight-bold">date de naissance :</label>
+                      <label>Date de naissance</label>
                       <input type="date" id="birthDate" formControlName="birthDate" placeholder="30/06/2000"
-                        class="form-control" style="border-radius: 0.35rem;">
+                        class="form-control">
                     </div>
                     <div class="form-group">
                       <input type="submit" name="submit" value="s'inscrire"
