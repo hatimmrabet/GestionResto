@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignupComponent } from './components/auth/signup/signup.component';
 import { AuthService } from './services/auth.service';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { OneProductComponent } from './components/one-product/one-product.component';
@@ -17,18 +16,14 @@ import { PublicAccueilMenuComponent } from './components/public-accueil/menu/men
 import { PublicAccueilPresentationComponent } from './components/public-accueil/presentation/presentation.component';
 import { PublicAccueilGalleryComponent } from './components/public-accueil/gallery/gallery.component';
 import { PublicAccueilContactComponent } from './components/public-accueil/contact/contact.component';
-import { LoginComponent } from './components/login/login.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { AuthComponent } from './components/auth/auth.component';
 
 const appRoutes: Routes = [
-  {
-    path: 'auth/signup',
-    component: SignupComponent,
-  },
   { path: 'products', component: OneProductComponent },
   { path: 'index', component: PublicAccueilComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'auth', component: AuthComponent },
   {
     path: 'profil',
     canActivate: [AuthGuardService],
@@ -45,8 +40,7 @@ const routerOptions: ExtraOptions = {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
+    AuthComponent,
     OneProductComponent,
     PublicHeaderComponent,
     PublicAccueilComponent,

@@ -3,17 +3,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { SignUpValidator } from 'src/app/validators/signup.validator';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
-  alert: { type: string; message: string } = { type: '', message: '' };
+  alertLogin: { type: string; message: string } = { type: '', message: '' };
+  alertSignup: { type: string; message: string } = { type: '', message: '' };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,10 +42,13 @@ export class LoginComponent implements OnInit {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       address: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
-      birthDate: ['', [Validators.required]],
+      phoneNumber: [
+        '',
+        [Validators.required, Validators.pattern('^0[0-9]{9}$')],
+      ], // phone number should have 10 digits
+      birthDate: ['', [Validators.required, SignUpValidator.validDate]], // birthdat should be in the past
     });
   }
 
@@ -59,13 +64,24 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['profil']);
       },
       (error) => {
-        this.alert = {
+        this.alertLogin = {
           type: 'danger',
           message: 'Email ou mot de passe sont incorrects',
         };
         // console.log('erreur Login componenet');
       }
     );
+    setTimeout(() => {
+      this.alertLogin = { type: '', message: '' };
+    }, 10000);
+  }
+
+  get loginControl() {
+    return this.loginForm.controls;
+  }
+
+  get signupControl() {
+    return this.signupForm.controls;
   }
 
   onSubmitSignupForm() {
@@ -81,14 +97,17 @@ export class LoginComponent implements OnInit {
       formValue['birthDate']
     );
     this.authService.signUpUser(user).then(
-      (response: any)  => {
-        this.alert = { type: 'success', message: response.message };
+      (response: any) => {
+        this.alertSignup = { type: 'success', message: response.message };
         // console.log(response)
       },
       (error) => {
-        this.alert = { type: 'danger', message: error.error.error };
+        this.alertSignup = { type: 'danger', message: error.error.error };
         // console.log(error);
       }
     );
+    setTimeout(() => {
+      this.alertSignup = { type: '', message: '' };
+    }, 10000);
   }
 }

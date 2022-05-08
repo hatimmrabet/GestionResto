@@ -18,7 +18,7 @@
                 class="bi bi-instagram"></i></a>
             <a *ngIf="isLoggedIn" routerLink="/profil" class="d-flex align-items-center justify-content-center"><i
                 class="bi bi-person-circle"></i></a>
-            <a *ngIf="!isLoggedIn" routerLink="/login" class="d-flex align-items-center justify-content-center"><i
+            <a *ngIf="!isLoggedIn" routerLink="/auth" class="d-flex align-items-center justify-content-center"><i
                 class="bi bi-person-circle"></i></a>
             <a *ngIf="isLoggedIn" routerLink="" (click)="signOut()"
               class="d-flex align-items-center justify-content-center"><i class="bi bi-box-arrow-right"></i></a>

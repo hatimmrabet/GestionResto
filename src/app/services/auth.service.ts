@@ -67,6 +67,6 @@ export class AuthService {
   // logout
   signOut() {
     this.tokenStorage.signOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth']);
   }
 }
