@@ -71,9 +71,7 @@ export class AuthComponent implements OnInit {
         // console.log('erreur Login componenet');
       }
     );
-    setTimeout(() => {
-      this.alertLogin = { type: '', message: '' };
-    }, 10000);
+    this.alertLogin = { type: '', message: '' };
   }
 
   get loginControl() {
@@ -106,8 +104,6 @@ export class AuthComponent implements OnInit {
         // console.log(error);
       }
     );
-    setTimeout(() => {
-      this.alertSignup = { type: '', message: '' };
-    }, 10000);
+    this.alertSignup = { type: '', message: '' };
   }
 }

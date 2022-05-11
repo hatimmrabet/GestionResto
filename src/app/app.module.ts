@@ -19,6 +19,8 @@ import { PublicAccueilContactComponent } from './components/public-accueil/conta
 import { ProfilComponent } from './components/profil/profil.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthComponent } from './components/auth/auth.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: 'products', component: OneProductComponent },
@@ -26,7 +28,7 @@ const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   {
     path: 'profil',
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     component: ProfilComponent,
   },
   { path: '**', redirectTo: 'index' },
@@ -59,6 +61,8 @@ const routerOptions: ExtraOptions = {
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, routerOptions),
+    NgbModule,
+    BrowserAnimationsModule,
   ],
   providers: [AuthService, ProductsService],
   bootstrap: [AppComponent],
