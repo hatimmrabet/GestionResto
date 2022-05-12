@@ -7,6 +7,7 @@ export class User {
   private birthDate: Date;
   private email: string;
   private password: string;
+  private role: string;
 
   constructor(data: any)
   {
@@ -18,6 +19,7 @@ export class User {
     this.birthDate = data.birthDate;
     this.email = data.email;
     this.password = data.password;
+    this.role = data.role;
  }
 
   public get Id(): string {
@@ -85,5 +87,12 @@ export class User {
     this.birthDate = birthDate;
   }
 
+  set Role(role: string) {
+    this.role = role;
+  }
+
+  get Role(): string {
+    return this.role;
+  }
 
 }

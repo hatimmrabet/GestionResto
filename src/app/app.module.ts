@@ -22,6 +22,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivateSidebarComponent } from './components/private-sidebar/private-sidebar.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { UsersService } from './services/users.service';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +50,7 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     PrivateSidebarComponent,
     UsersListComponent,
     AllUsersComponent,
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,8 +60,10 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
+    MatSliderModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatIconModule, MatButtonModule, MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [AuthService, ProductsService],
+  providers: [AuthService, ProductsService, UsersService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -33,18 +33,8 @@ export class AuthService {
 
   // creation nouveau compte
   signUpUser(user: User) {
-    let requestBody = {
-      firstName: user.FirstName,
-      lastName: user.LastName,
-      email: user.Email,
-      password: user.Password,
-      address: user.Address,
-      phoneNumber: user.PhoneNumber,
-      birthDate: user.BirthDate,
-    };
-
     return new Promise((resolve, reject) => {
-      this.httpClient.post(this.API_URL + 'signup', requestBody).subscribe(
+      this.httpClient.post(this.API_URL + 'signup', user).subscribe(
         (response) => {
           resolve(response);
         },

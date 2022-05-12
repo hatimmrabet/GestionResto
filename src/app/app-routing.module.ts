@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
     // canActivate: [AuthGuardService],
     component: ProfilComponent,
   },
+  { path: 'create-user', component: CreateUserComponent },
   { path: 'all-users', component: AllUsersComponent },
   { path: '**', redirectTo: 'index' },
 ];
