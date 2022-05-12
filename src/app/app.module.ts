@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProductsService } from './services/products.service';
 import { PublicHeaderComponent } from './components/public-header/public-header.component';
@@ -17,28 +16,12 @@ import { PublicAccueilPresentationComponent } from './components/public-accueil/
 import { PublicAccueilGalleryComponent } from './components/public-accueil/gallery/gallery.component';
 import { PublicAccueilContactComponent } from './components/public-accueil/contact/contact.component';
 import { ProfilComponent } from './components/profil/profil.component';
-import { AuthGuardService } from './services/auth-guard.service';
 import { AuthComponent } from './components/auth/auth.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-const appRoutes: Routes = [
-  { path: 'products', component: OneProductComponent },
-  { path: 'index', component: PublicAccueilComponent },
-  { path: 'auth', component: AuthComponent },
-  {
-    path: 'profil',
-    // canActivate: [AuthGuardService],
-    component: ProfilComponent,
-  },
-  { path: '**', redirectTo: 'index' },
-];
-
-const routerOptions: ExtraOptions = {
-  useHash: false,
-  anchorScrolling: 'enabled',
-};
-
+import { PrivateSidebarComponent } from './components/private-sidebar/private-sidebar.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +36,9 @@ const routerOptions: ExtraOptions = {
     PublicAccueilGalleryComponent,
     PublicAccueilContactComponent,
     ProfilComponent,
+    PrivateSidebarComponent,
+    UsersListComponent,
+    AllUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +46,6 @@ const routerOptions: ExtraOptions = {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, routerOptions),
     NgbModule,
     BrowserAnimationsModule,
   ],

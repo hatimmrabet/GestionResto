@@ -18,10 +18,14 @@ export class AuthGuardService implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(): boolean | Observable<boolean> | Promise<boolean> {
-    let TokenHeader = new HttpHeaders({
+  public getTokenHeader(): HttpHeaders {
+    return new HttpHeaders({
       Authorization: `Bearer ${this.tokenStorage.getToken()}`,
     });
+  }
+
+  canActivate(): boolean | Observable<boolean> | Promise<boolean> {
+    let TokenHeader = this.getTokenHeader();
     if (this.auth.isLoggedIn()) {
       return new Promise((resolve, reject) => {
         this.httpClient.get(this.API_URL, { headers: TokenHeader }).subscribe(

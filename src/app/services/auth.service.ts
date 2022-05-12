@@ -18,7 +18,7 @@ export class AuthService {
 
   // login user
   signInUser(user: User) {
-    let requestBody = { email: user.getEmail(), password: user.getPassword() };
+    let requestBody = { email: user.Email, password: user.Password };
     return new Promise((resolve, reject) => {
       this.httpClient.post(this.API_URL + 'signin', requestBody).subscribe(
         (response) => {
@@ -34,13 +34,13 @@ export class AuthService {
   // creation nouveau compte
   signUpUser(user: User) {
     let requestBody = {
-      firstName: user.getFirstName(),
-      lastName: user.getLastName(),
-      email: user.getEmail(),
-      password: user.getPassword(),
-      address: user.getAddress(),
-      phoneNumber: user.getPhoneNumber(),
-      birthDate: user.getBirthDate(),
+      firstName: user.FirstName,
+      lastName: user.LastName,
+      email: user.Email,
+      password: user.Password,
+      address: user.Address,
+      phoneNumber: user.PhoneNumber,
+      birthDate: user.BirthDate,
     };
 
     return new Promise((resolve, reject) => {

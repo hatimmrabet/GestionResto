@@ -1,4 +1,5 @@
 export class User {
+  private id: string;
   private firstName: string;
   private lastName: string;
   private address: string;
@@ -7,81 +8,80 @@ export class User {
   private email: string;
   private password: string;
 
-  constructor(email: string, password: string);
-  constructor(
-    email: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-    address: string,
-    phoneNumber: string,
-    birthDate: Date
-  );
-  constructor(...myarray: any[]) {
-    this.email = myarray[0];
-    this.password = myarray[1];
-    if (myarray.length > 2) {
-      this.firstName = myarray[2];
-      this.lastName = myarray[3];
-      this.address = myarray[4];
-      this.phoneNumber = myarray[5];
-      this.birthDate = myarray[6];
-    }
+  constructor(data: any)
+  {
+    this.id = data.id;
+    this.firstName = data.firstName;
+    this.lastName = data.lastName;
+    this.address = data.address;
+    this.phoneNumber = data.phoneNumber;
+    this.birthDate = data.birthDate;
+    this.email = data.email;
+    this.password = data.password;
+ }
+
+  public get Id(): string {
+    return this.id;
   }
 
-  getEmail() {
+
+  public get Email() {
     return this.email;
   }
 
-  getPassword() {
+  public get Password() {
     return this.password;
   }
 
-  getFirstName() {
+  public get FirstName() : string {
     return this.firstName;
   }
 
-  getLastName() {
+  public get LastName() {
     return this.lastName;
   }
 
-  getAddress() {
+  public get Address() {
     return this.address;
   }
 
-  getPhoneNumber() {
+  public get PhoneNumber() {
     return this.phoneNumber;
   }
 
-  getBirthDate() {
+  public get BirthDate() {
     return this.birthDate;
   }
 
-  setEmail(email: string) {
+  set Id(id: string) {
+    this.id = id;
+  }
+
+  set Email(email: string) {
     this.email = email;
   }
 
-  setPassword(password: string) {
+  set Password(password: string) {
     this.password = password;
   }
 
-  setFirstName(firstName: string) {
+  set FirstName(firstName: string) {
     this.firstName = firstName;
   }
 
-  setLastName(lastName: string) {
+  set LastName(lastName: string) {
     this.lastName = lastName;
   }
 
-  setAddress(address: string) {
+  set Address(address: string) {
     this.address = address;
   }
 
-  setPhoneNumber(phoneNumber: string) {
+  set PhoneNumber(phoneNumber: string) {
     this.phoneNumber = phoneNumber;
   }
 
-  setBirthDate(birthDate: Date) {
+  set BirthDate(birthDate: Date) {
     this.birthDate = birthDate;
   }
 

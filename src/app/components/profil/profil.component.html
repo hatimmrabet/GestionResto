@@ -4,70 +4,30 @@
 <div class="w-100">
   <div class="row justify-content-start m-0">
     <div class="col-2">
-        <div class="p-3 bg-white">
-          <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                data-bs-target="#home-collapse" aria-expanded="true">
-                Home
-              </button>
-              <div class="collapse show" id="home-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">Overview</a></li>
-                  <li><a href="#" class="link-dark rounded">Updates</a></li>
-                  <li><a href="#" class="link-dark rounded">Reports</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                data-bs-target="#dashboard-collapse" aria-expanded="true">
-                Dashboard
-              </button>
-              <div class="collapse show" id="dashboard-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">Overview</a></li>
-                  <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                  <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                  <li><a href="#" class="link-dark rounded">Annually</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                data-bs-target="#orders-collapse" aria-expanded="true">
-                Orders
-              </button>
-              <div class="collapse show" id="orders-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">New</a></li>
-                  <li><a href="#" class="link-dark rounded">Processed</a></li>
-                  <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                  <li><a href="#" class="link-dark rounded">Returned</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="border-top my-3"></li>
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                data-bs-target="#account-collapse" aria-expanded="true">
-                Account
-              </button>
-              <div class="collapse show" id="account-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">New...</a></li>
-                  <li><a href="#" class="link-dark rounded">Profile</a></li>
-                  <li><a href="#" class="link-dark rounded">Settings</a></li>
-                  <li><a href="#" class="link-dark rounded">Sign out</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
+      <app-private-sidebar></app-private-sidebar>
     </div>
     <div class="col-10">
-      <div class="p-3">
-        col2
+      <div class="container p-3">
+        <h3>Dashboard</h3>
+        <div class="row">
+          <div class="col-sm-6">
+          <div class="card">
+            <h5 class="card-header">Orders</h5>
+            <div class="card-body">
+              <h5 class="card-title">Today Orders : <span class="badge bg-success">+99</span></h5>
+              <p class="card-text">All orders</p>
+            </div>
+          </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <h5 class="card-header">New Users</h5>
+              <div class="card-body">
+                <h5 class="card-title">Today Users : <span class="badge bg-success">+5</span></h5>
+                <p class="card-text">All orders</p>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>

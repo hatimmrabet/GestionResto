@@ -55,7 +55,7 @@ export class AuthComponent implements OnInit {
   onSubmitLoginForm() {
     const formValue = this.loginForm.value;
     console.log(formValue);
-    const user = new User(formValue['email'], formValue['password']);
+    const user = new User(formValue);
 
     this.authService.signInUser(user).then(
       (response: any) => {
@@ -85,15 +85,7 @@ export class AuthComponent implements OnInit {
   onSubmitSignupForm() {
     const formValue = this.signupForm.value;
     console.log(formValue);
-    const user = new User(
-      formValue['email'],
-      formValue['password'],
-      formValue['firstName'],
-      formValue['lastName'],
-      formValue['address'],
-      formValue['phoneNumber'],
-      formValue['birthDate']
-    );
+    const user = new User(formValue);
     this.authService.signUpUser(user).then(
       (response: any) => {
         this.alertSignup = { type: 'success', message: response.message };
