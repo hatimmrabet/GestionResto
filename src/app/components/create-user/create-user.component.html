@@ -10,6 +10,9 @@
         <h3>Create new user</h3>
 
         <div class="p-5 mx-auto">
+
+          <ngb-alert *ngIf="alertSignup.message" class="text-center" [dismissible]="false" [type]="alertSignup.type">{{ alertSignup.message }}</ngb-alert>
+
           <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()">
             <div class="row">
               <div class="form-group col-md-3 mb-2">

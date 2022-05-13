@@ -10,13 +10,15 @@ import { SignUpValidator } from 'src/app/validators/signup.validator';
   styleUrls: ['./create-user.component.scss'],
 })
 export class CreateUserComponent implements OnInit {
-
   signupForm: FormGroup;
   hide = true;
   selected = null;
-  alertSignup: { type: string, message: string };
+  alertSignup: { type: string; message: string };
 
-  constructor(private formBuilder: FormBuilder, private authService : AuthService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.alertSignup = { type: '', message: '' };
@@ -30,8 +32,11 @@ export class CreateUserComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       address: ['', [Validators.required]],
-      phoneNumber: ['',[Validators.required, Validators.pattern('^0[0-9]{9}$')]], // phone number should have 10 digits
-      role: ['',[Validators.required]],
+      phoneNumber: [
+        '',
+        [Validators.required, Validators.pattern('^0[0-9]{9}$')],
+      ], // phone number should have 10 digits
+      role: ['', [Validators.required]],
       birthDate: ['', [Validators.required, SignUpValidator.validDate]], // birthdat should be in the past
     });
   }
@@ -44,11 +49,11 @@ export class CreateUserComponent implements OnInit {
     const user = new User(this.signupForm.value);
     this.authService.signUpUser(user).then(
       (response: any) => {
-        this.alertSignup = { type: 'success', message: response.message };
-        console.log(response)
+        console.log(response);
+        this.alertSignup = { type: 'success', message: response.response };
       },
       (error) => {
-        this.alertSignup = { type: 'danger', message: error.error.error };
+        this.alertSignup = { type: 'danger', message: error.error };
         console.log(error);
       }
     );

@@ -14,8 +14,8 @@ import { AuthService } from '../../services/auth.service';
 export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
-  alertLogin: { type: string; message: string } = { type: '', message: '' };
-  alertSignup: { type: string; message: string } = { type: '', message: '' };
+  alertLogin: { type: string; message: string };
+  alertSignup: { type: string; message: string };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +25,8 @@ export class AuthComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.alertLogin = { type: '', message: '' };
+    this.alertSignup = { type: '', message: '' };
     this.authService.autoNavigateIfLoggedIn();
     this.initLoginForm();
     this.initSignupForm();
@@ -68,10 +70,9 @@ export class AuthComponent implements OnInit {
           type: 'danger',
           message: 'Email ou mot de passe sont incorrects',
         };
-        // console.log('erreur Login componenet');
+        // console.log('erreur Login component');
       }
     );
-    this.alertLogin = { type: '', message: '' };
   }
 
   get loginControl() {
@@ -84,18 +85,16 @@ export class AuthComponent implements OnInit {
 
   onSubmitSignupForm() {
     const formValue = this.signupForm.value;
-    console.log(formValue);
+    // console.log(formValue);
     const user = new User(formValue);
     this.authService.signUpUser(user).then(
       (response: any) => {
-        this.alertSignup = { type: 'success', message: response.message };
-        // console.log(response)
+        this.alertSignup = { type: 'success', message: response.response };
       },
       (error) => {
-        this.alertSignup = { type: 'danger', message: error.error.error };
-        // console.log(error);
+        console.log(error);
+        this.alertSignup = { type: 'danger', message: error.error };
       }
     );
-    this.alertSignup = { type: '', message: '' };
   }
 }
