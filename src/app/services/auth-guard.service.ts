@@ -9,6 +9,7 @@ import { TokenStorageService } from './token-storage.service';
   providedIn: 'root',
 })
 export class AuthGuardService implements CanActivate {
+
   API_URL = 'http://localhost:8080/auth/testJWT';
 
   constructor(
@@ -33,13 +34,14 @@ export class AuthGuardService implements CanActivate {
             resolve(true);
           },
           () => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/auth']);
             reject(false);
           }
         );
       });
     } else {
       console.log('pas connecté');
+      this.router.navigate(['/auth']);
       return false;
     }
   }

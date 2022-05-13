@@ -6,6 +6,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: 'products', component: OneProductComponent },
@@ -13,11 +14,19 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   {
     path: 'profil',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     component: ProfilComponent,
   },
-  { path: 'create-user', component: CreateUserComponent },
-  { path: 'all-users', component: AllUsersComponent },
+  {
+    path: 'create-user',
+    canActivate: [AuthGuardService],
+    component: CreateUserComponent,
+  },
+  {
+    path: 'all-users',
+    canActivate: [AuthGuardService],
+    component: AllUsersComponent,
+  },
   { path: '**', redirectTo: 'index' },
 ];
 
