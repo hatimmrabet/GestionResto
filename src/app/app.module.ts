@@ -32,6 +32,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CreateProductComponent } from './components/create-product/create-product.component';
+import { GetProductsComponent } from './components/get-products/get-products.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -51,6 +55,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     UsersListComponent,
     AllUsersComponent,
     CreateUserComponent,
+    CreateProductComponent,
+    GetProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgbModule,
     BrowserAnimationsModule,
     MatSliderModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatIconModule, MatButtonModule, MatDatepickerModule,
-    MatNativeDateModule,
+    MatNativeDateModule, MatTableModule, MatPaginatorModule,
   ],
   providers: [AuthService, ProductsService, UsersService],
   bootstrap: [AppComponent],

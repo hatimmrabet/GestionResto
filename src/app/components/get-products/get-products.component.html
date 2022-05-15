@@ -1,0 +1,61 @@
+<app-public-header></app-public-header>
+
+<div class="w-100">
+  <div class="row justify-content-start m-0">
+    <div class="col-2">
+      <app-private-sidebar></app-private-sidebar>
+    </div>
+    <div class="col-10">
+
+      <div class="mat-elevation-z3">
+        <table mat-table [dataSource]="dataSource" class="table table-striped table table-borderless">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="categorie">
+            <th mat-header-cell *matHeaderCellDef> Categorie </th>
+            <td mat-cell *matCellDef="let element"> {{element.categorie.name }} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="ingredients">
+            <th mat-header-cell *matHeaderCellDef> Ingredients </th>
+            <td mat-cell *matCellDef="let element">
+              <p *ngFor="let ingr of element.ingredients;" >{{ ingr.name }} </p></td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> price </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

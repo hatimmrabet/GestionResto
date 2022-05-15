@@ -3,6 +3,7 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { GetProductsComponent } from './components/get-products/get-products.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
@@ -26,6 +27,11 @@ const routes: Routes = [
     path: 'all-users',
     canActivate: [AuthGuardService],
     component: AllUsersComponent,
+  },
+  {
+    path: 'all-products',
+    // canActivate: [AuthGuardService],
+    component: GetProductsComponent,
   },
   { path: '**', redirectTo: 'index' },
 ];
