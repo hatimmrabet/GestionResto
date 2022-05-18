@@ -12,10 +12,8 @@ import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
-import { ThisReceiver } from '@angular/compiler';
 import { ProductsService } from 'src/app/services/products.service';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { Categorie } from 'src/app/models/Categorie.model';
 import { IngredientsService } from 'src/app/services/ingredients.service';
 
 @Component({
@@ -36,7 +34,7 @@ export class CreateProductComponent implements OnInit {
   allIngred: string[] = [];
   filteredIngred: Observable<string[]>;
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('ingreInput') ingreInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoIngredients') matAutoIngredients: MatAutocomplete;
 
   constructor(
@@ -47,6 +45,12 @@ export class CreateProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // afficher message d'alerte s'il y en a un
+    if(localStorage.getItem('alert')) {
+      this.alert = JSON.parse(localStorage.getItem('alert')!!);
+      localStorage.removeItem('alert');
+    }
+
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -95,15 +99,22 @@ export class CreateProductComponent implements OnInit {
     console.log(this.form.value);
     this.ProductsService.createProduct(this.form.value).subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
+        // preparer message d'alerte
         this.alert.type = 'success';
         this.alert.message = 'Product created successfully';
+        // enregistrer en localStorage
+        localStorage.setItem('alert', JSON.stringify(this.alert));
+        // console.log(localStorage.getItem('alert'));
+        // reload page
+        window.location.reload();
       },
       (err) => {
         this.alert.type = 'danger';
         this.alert.message = err.error.message;
       }
     );
+
   }
 
   add(event: MatChipInputEvent): void {
@@ -134,7 +145,7 @@ export class CreateProductComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.ingredients.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
+    this.ingreInput.nativeElement.value = '';
     this.form.get('ingredients')!!.setValue(null);
   }
 

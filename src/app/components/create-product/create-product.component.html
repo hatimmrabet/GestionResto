@@ -72,7 +72,7 @@
                     </mat-option>
                   </mat-autocomplete>
                   <mat-error *ngIf="formControl['categorie'].touched && formControl['categorie'].invalid">
-                    A Categorie is required.
+                    A categorie is required.
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -86,10 +86,9 @@
                       <mat-icon>cancel</mat-icon>
                     </button>
                   </mat-chip>
-                  <input placeholder="Nouvel ingredient..." #fruitInput formControlName="ingredients" [matAutocomplete]="autoIngredients"
+                  <input placeholder="Nouvel ingredient..." #ingreInput formControlName="ingredients" [matAutocomplete]="autoIngredients"
                     [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                     (matChipInputTokenEnd)="add($event)">
-
                 </mat-chip-list>
                 <mat-autocomplete #autoIngredients="matAutocomplete" (optionSelected)="selected($event)">
                   <mat-option *ngFor="let ingredient of filteredIngred | async" [value]="ingredient">

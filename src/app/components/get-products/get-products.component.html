@@ -7,7 +7,10 @@
     </div>
     <div class="col-10">
       <div class="container p-3">
+
         <h3>Tous les produits</h3>
+        <a [routerLink]="['/create-product']" role="button" class="btn btn-primary">Ajouter un produit</a>
+
         <div class="mat-elevation-z3">
           <table mat-table [dataSource]="dataSource" class="table table-striped table table-borderless">
 
@@ -45,8 +48,23 @@
 
             <!-- Weight Column -->
             <ng-container matColumnDef="price">
-              <th mat-header-cell *matHeaderCellDef> price </th>
+              <th mat-header-cell *matHeaderCellDef> Price </th>
               <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="update">
+              <th mat-header-cell *matHeaderCellDef> Update </th>
+              <td mat-cell *matCellDef="let element">
+                <a [routerLink]="['/update-product', element.id]" role="button" class="btn btn-warning btn-sm">Update</a>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef> delete </th>
+              <td mat-cell *matCellDef="let element">
+                <!-- (click)="deleteProduct(element.id)" -->
+                <a  role="button" class="btn btn-danger btn-sm">Delete</a>
+              </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
