@@ -36,6 +36,9 @@ import { CreateProductComponent } from './components/create-product/create-produ
 import { GetProductsComponent } from './components/get-products/get-products.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CreateUserComponent,
     CreateProductComponent,
     GetProductsComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     NgbModule,
     BrowserAnimationsModule,
     MatSliderModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatIconModule, MatButtonModule, MatDatepickerModule,
-    MatNativeDateModule, MatTableModule, MatPaginatorModule,
+    MatNativeDateModule, MatTableModule, MatPaginatorModule, MatAutocompleteModule, MatChipsModule,
   ],
   providers: [AuthService, ProductsService, UsersService],
   bootstrap: [AppComponent],

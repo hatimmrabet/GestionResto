@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
+import { ProductRequest } from '../models/product-request.model';
 import { AuthGuardService } from './auth-guard.service';
 
 @Injectable({
@@ -21,6 +22,12 @@ export class ProductsService {
 
   getProduct(id: number) : Observable<Product> {
     return this.httpClient.get<Product>(`${this.API}/${id}`, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
+  createProduct(product: ProductRequest) : Observable<Product> {
+    return this.httpClient.post<Product>(this.API, product, {
       headers: this.authGuardService.getTokenHeader(),
     });
   }
