@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
+import { AllMenusComponent } from './components/all-menus/all-menus.component';
+import { AllProductsComponent } from './components/all-products/all-products.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
-import { GetProductsComponent } from './components/get-products/get-products.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
@@ -33,7 +34,12 @@ const routes: Routes = [
   {
     path: 'all-products',
     // canActivate: [AuthGuardService],
-    component: GetProductsComponent,
+    component: AllProductsComponent,
+  },
+  {
+    path: 'all-menus',
+    // canActivate: [AuthGuardService],
+    component: AllMenusComponent,
   },
   {
     path: 'test',

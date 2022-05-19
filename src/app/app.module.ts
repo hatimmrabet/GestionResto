@@ -33,12 +33,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CreateProductComponent } from './components/create-product/create-product.component';
-import { GetProductsComponent } from './components/get-products/get-products.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { TestComponent } from './components/test/test.component';
+import { AllMenusComponent } from './components/all-menus/all-menus.component';
+import { AllProductsComponent } from './components/all-products/all-products.component';
+import { CreateMenuComponent } from './components/create-menu/create-menu.component';
 
 @NgModule({
   declarations: [
@@ -59,8 +61,10 @@ import { TestComponent } from './components/test/test.component';
     AllUsersComponent,
     CreateUserComponent,
     CreateProductComponent,
-    GetProductsComponent,
+    AllProductsComponent,
     TestComponent,
+    AllMenusComponent,
+    CreateMenuComponent,
   ],
   imports: [
     BrowserModule,
