@@ -5,11 +5,11 @@ import { Product } from 'src/app/models/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
-  selector: 'app-get-products',
-  templateUrl: './get-products.component.html',
-  styleUrls: ['./get-products.component.scss'],
+  selector: 'app-all-products',
+  templateUrl: './all-products.component.html',
+  styleUrls: ['./all-products.component.scss'],
 })
-export class GetProductsComponent implements OnInit {
+export class AllProductsComponent implements OnInit {
 
   products: Product[] = [];
   displayedColumns: string[] = ['id', 'name', 'description', 'categorie','ingredients','price','update','delete'];
