@@ -32,4 +32,13 @@ export class ProductsService {
     });
   }
 
+  getProductsGroupByCategories() : Observable<Map<string, Product[]>> {
+    return this.httpClient.get<Map<string, Product[]>>(
+      this.API + '/group-by-categories',
+      {
+        headers: this.authGuardService.getTokenHeader(),
+      }
+    );
+  }
+
 }

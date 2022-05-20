@@ -12,9 +12,9 @@ import { ProductsService } from 'src/app/services/products.service';
 export class CreateMenuComponent implements OnInit {
   form: FormGroup;
   alert = { type: '', message: '' };
-  categories_name: String[] = [];
   products: Product[] = [];
   selectedImage: File;
+  productsByCategory: Map<string, Product[]> = new Map();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,18 +37,12 @@ export class CreateMenuComponent implements OnInit {
       produits: ['', [Validators.required]],
     });
 
-    // get all products
-    this.ProductService.getProducts().subscribe((res) => {
-      // tous les produits
-      this.products = res;
-
-      this.products.forEach((element: Product) => {
-        if (!this.categories_name.includes(element.categorie.id)) {
-          this.categories_name.push(element.categorie.id);
-        }
-      });
-      console.log(this.categories_name);
+    // get products by categories
+    this.ProductService.getProductsGroupByCategories().subscribe((res) => {
+      this.productsByCategory = res;
+      console.log(this.productsByCategory);
     });
+
   }
 
   get formControl() {

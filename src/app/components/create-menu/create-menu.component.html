@@ -52,8 +52,8 @@
 
             <div class="row">
               <div class="form-group col-md-6 mb-2">
-                <input class="form-control form-control" (change)="selectFile($event)" type="file" accept="image/png, image/jpeg"
-                  formControlName="image">
+                <input class="form-control form-control" (change)="selectFile($event)" type="file"
+                  accept="image/png, image/jpeg" formControlName="image">
                 <div class="invalid-feedback" style="display: block;"
                   *ngIf="formControl['image'].touched && formControl['image'].invalid">
                   A picture is required.
@@ -61,19 +61,28 @@
               </div>
             </div>
 
-            <mat-selection-list #shoes formControlName="produits">
-              <mat-list-option *ngFor="let prod of products" [value]="prod.id" >
-                <img mat-list-avatar style="width: 90px;height: 90px;border-radius: 0%;" src="http://localhost:8080/content/images/{{prod.image}}" alt="">
-                <div mat-line>{{prod.name}}</div>
-                <div mat-line> {{prod.description }} </div>
-                <div mat-line> {{prod.price }} € </div>
-                <div mat-line> {{prod.categorie.name }} </div>
-              </mat-list-option>
-            </mat-selection-list>
+            <div class="row mt-3">
+              <h4>Les produits </h4>
+              <mat-selection-list #shoes formControlName="produits">
+                <div *ngFor="let cat of productsByCategory | keyvalue">
+                  <div *ngIf="cat.value.length > 0">
+                    <div mat-subheader> {{ cat.key }}</div>
+                    <mat-list-option style="display: inline-block; width: 30%;" *ngFor="let prod of cat.value" [value]="prod.id">
+                      <img mat-list-avatar style="width: 90px;height: 90px;border-radius: 0%;"
+                        src="http://localhost:8080/content/images/{{prod.image}}" alt="">
+                      <div mat-line>{{prod.name}}</div>
+                      <div mat-line> {{prod.description }} </div>
+                      <div mat-line> {{prod.price }} € </div>
+                      <div mat-line> {{prod.categorie.name }} </div>
+                    </mat-list-option>
+                  </div>
+                </div>
+              </mat-selection-list>
+            </div>
 
             <div class="form-group mb-2">
               <input type="submit" name="submit" value="Enregistrer" class="btn btn-primary font-weight-bold mt-1"
-                style="border-radius: 0.25rem; font-size: 16px;" [disabled]="form.invalid"  />
+                style="border-radius: 0.25rem; font-size: 16px;" [disabled]="form.invalid" />
             </div>
           </form>
         </div>
