@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import { Menu } from 'src/app/models/Menu.model';
 import { MenusService } from 'src/app/services/menus.service';
 
@@ -11,28 +9,27 @@ import { MenusService } from 'src/app/services/menus.service';
 })
 export class AllMenusComponent implements OnInit {
   menus: Menu[] = [];
-  displayedColumns: string[] = [
-    'id',
-    'name',
-    'description',
-    'produits',
-    'price',
-    'update',
-    'delete',
-  ];
-  dataSource = new MatTableDataSource<Menu>(this.menus);
+  displayedMenus: Menu[] = [];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  page = 1;
+  pageSize = 5;
+  collectionSize  = 0;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-  constructor(private menuService: MenusService) {}
+  constructor(private menuService: MenusService) { }
 
   ngOnInit(): void {
     this.menuService.getMenus().subscribe((data) => {
       this.menus = data;
-      this.dataSource = new MatTableDataSource<Menu>(this.menus);
+      this.collectionSize = this.menus.length;
+      this.refreshMenu();
     });
+  }
+
+  refreshMenu() {
+    this.displayedMenus = this.menus.map((menu, i) => ({_id: i+1,...menu}))
+    .slice(
+      (this.page - 1) * this.pageSize,
+      (this.page - 1) * this.pageSize + this.pageSize
+    );
   }
 }
