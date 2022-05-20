@@ -4,6 +4,7 @@ import { AllMenusComponent } from './components/all-menus/all-menus.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { CreateMenuComponent } from './components/create-menu/create-menu.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
@@ -20,11 +21,6 @@ const routes: Routes = [
     path: 'profil',
     canActivate: [AuthGuardService],
     component: ProfilComponent,
-  },
-  {
-    path: 'create-user',
-    canActivate: [AuthGuardService],
-    component: CreateUserComponent,
   },
   {
     path: 'all-users',
@@ -46,9 +42,19 @@ const routes: Routes = [
     component: TestComponent,
   },
   {
+    path: 'create-user',
+    canActivate: [AuthGuardService],
+    component: CreateUserComponent,
+  },
+  {
     path: 'create-product',
     // canActivate: [AuthGuardService],
     component: CreateProductComponent,
+  },
+  {
+    path: 'create-menu',
+    // canActivate: [AuthGuardService],
+    component: CreateMenuComponent,
   },
   { path: '**', redirectTo: 'index' },
 ];

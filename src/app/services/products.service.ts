@@ -26,7 +26,7 @@ export class ProductsService {
     });
   }
 
-  createProduct(product: ProductRequest) : Observable<Product> {
+  createProduct(product: FormData) : Observable<Product> {
     return this.httpClient.post<Product>(this.API, product, {
       headers: this.authGuardService.getTokenHeader(),
     });

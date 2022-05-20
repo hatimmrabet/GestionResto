@@ -1,3 +1,4 @@
+import { Categorie } from "./Categorie.model";
 import { Ingredient } from "./Ingredient.model";
 
 export class Product {
@@ -7,15 +8,17 @@ export class Product {
   image: string;
   price: number;
   ingredients: Ingredient[];
+  categorie: Categorie;
 
 
-  constructor(id: string, name: string, description: string, image: string, price: number, ingredients: Ingredient[]) {
+  constructor(id: string, name: string, description: string, image: string, price: number, categorie: Categorie, ingredients: Ingredient[]) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.image = image;
     this.price = price;
     this.ingredients = ingredients;
+    this.categorie =  categorie;
   }
 
 

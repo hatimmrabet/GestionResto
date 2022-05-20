@@ -26,13 +26,29 @@
                 </mat-form-field>
               </div>
 
-              <div class="form-group col-md-6 mb-2">
+              <div class="form-group col-md-3 mb-2">
                 <mat-form-field appearance="fill">
                   <mat-label>Price</mat-label>
                   <input matInput type="number" min="0" placeholder="10 €" formControlName="price" required>
                   <span matSuffix>€</span>
                   <mat-error *ngIf="formControl['price'].touched && formControl['price'].invalid">
                     The price can be at least 0.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group col-md-3 mb-2">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Categorie</mat-label>
+                  <input type="text" placeholder="Pick one" aria-label="Categorie" matInput formControlName="categorie"
+                    [matAutocomplete]="auto">
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredCategories | async" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="formControl['categorie'].touched && formControl['categorie'].invalid">
+                    A categorie is required.
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -51,32 +67,6 @@
             </div>
 
             <div class="row">
-              <div class="form-group col-md-6 mb-2">
-                <mat-form-field appearance="fill">
-                  <mat-label>Image</mat-label>
-                  <input matInput type="text" formControlName="image" required>
-                  <mat-error *ngIf="formControl['image'].touched && formControl['image'].invalid">
-                    A picture is required.
-                  </mat-error>
-                </mat-form-field>
-              </div>
-
-              <div class="form-group col-md-6 mb-2">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Categorie</mat-label>
-                  <input type="text" placeholder="Pick one" aria-label="Categorie" matInput formControlName="categorie"
-                    [matAutocomplete]="auto">
-                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredCategories | async" [value]="option">
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
-                  <mat-error *ngIf="formControl['categorie'].touched && formControl['categorie'].invalid">
-                    A categorie is required.
-                  </mat-error>
-                </mat-form-field>
-              </div>
-
               <mat-form-field class="example-chip-list" appearance="fill">
                 <mat-label>Ingredients</mat-label>
                 <mat-chip-list #chipList aria-label="Ingredients">
@@ -86,9 +76,9 @@
                       <mat-icon>cancel</mat-icon>
                     </button>
                   </mat-chip>
-                  <input placeholder="Nouvel ingredient..." #ingreInput formControlName="ingredients" [matAutocomplete]="autoIngredients"
-                    [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    (matChipInputTokenEnd)="add($event)">
+                  <input placeholder="Nouvel ingredient..." #ingreInput formControlName="ingredients"
+                    [matAutocomplete]="autoIngredients" [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
                 </mat-chip-list>
                 <mat-autocomplete #autoIngredients="matAutocomplete" (optionSelected)="selected($event)">
                   <mat-option *ngFor="let ingredient of filteredIngred | async" [value]="ingredient">
@@ -96,6 +86,15 @@
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6 mb-2">
+                <input class="form-control form-control" (change)="selectFile($event)" type="file" accept="image/png, image/jpeg" formControlName="image">
+                <div class="invalid-feedback" style="display: block;" *ngIf="formControl['image'].touched && formControl['image'].invalid">
+                  A picture is required.
+                </div>
+              </div>
             </div>
 
             <div class="form-group mb-2">

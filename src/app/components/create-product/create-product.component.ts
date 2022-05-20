@@ -22,7 +22,6 @@ import { IngredientsService } from 'src/app/services/ingredients.service';
   styleUrls: ['./create-product.component.scss'],
 })
 export class CreateProductComponent implements OnInit {
-
   separatorKeysCodes: number[] = [ENTER, COMMA];
   form: FormGroup;
   alert = { type: '', message: '' };
@@ -33,6 +32,9 @@ export class CreateProductComponent implements OnInit {
   ingredients: string[] = [];
   allIngred: string[] = [];
   filteredIngred: Observable<string[]>;
+
+  // l'image selectionné
+  selectedImage: File;
 
   @ViewChild('ingreInput') ingreInput: ElementRef<HTMLInputElement>;
   @ViewChild('autoIngredients') matAutoIngredients: MatAutocomplete;
@@ -46,7 +48,7 @@ export class CreateProductComponent implements OnInit {
 
   ngOnInit(): void {
     // afficher message d'alerte s'il y en a un
-    if(localStorage.getItem('alert')) {
+    if (localStorage.getItem('alert')) {
       this.alert = JSON.parse(localStorage.getItem('alert')!!);
       localStorage.removeItem('alert');
     }
@@ -61,33 +63,29 @@ export class CreateProductComponent implements OnInit {
     });
 
     // recuperer les categories
-    this.categoriesService.getCategories().subscribe(
-      (res) => {
-        // console.log(res);
-        this.categories = res.map((categorie) => categorie.name);
+    this.categoriesService.getCategories().subscribe((res) => {
+      // console.log(res);
+      this.categories = res.map((categorie) => categorie.name);
 
-        // activer le filtrage des inputs
-        this.filteredCategories = this.form.get('categorie')!!.valueChanges.pipe(
-          startWith(''),
-          map((value) => this._filter(this.categories, value))
-        );
-      }
-    );
+      // activer le filtrage des inputs
+      this.filteredCategories = this.form.get('categorie')!!.valueChanges.pipe(
+        startWith(''),
+        map((value) => this._filter(this.categories, value))
+      );
+    });
 
     // recuperer les ingredients
-    this.ingredientsService.getIngredients().subscribe(
-      (res) => {
-        // console.log(res);
-        this.allIngred = res.map((ingredient) => ingredient.name);
+    this.ingredientsService.getIngredients().subscribe((res) => {
+      // console.log(res);
+      this.allIngred = res.map((ingredient) => ingredient.name);
 
-        this.filteredIngred = this.form.get('ingredients')!!.valueChanges.pipe(
-            startWith(null),
-            map((fruit: string | null) =>
-              fruit ? this._filter(this.allIngred, fruit) : this.allIngred.slice()
-            )
-          );
-      }
-    );
+      this.filteredIngred = this.form.get('ingredients')!!.valueChanges.pipe(
+        startWith(null),
+        map((fruit: string | null) =>
+          fruit ? this._filter(this.allIngred, fruit) : this.allIngred.slice()
+        )
+      );
+    });
   }
 
   get formControl() {
@@ -97,15 +95,27 @@ export class CreateProductComponent implements OnInit {
   onSubmit() {
     this.form.value.ingredients = this.ingredients;
     console.log(this.form.value);
-    this.ProductsService.createProduct(this.form.value).subscribe(
+
+    console.log(this.form.value.image);
+
+    const formData = new FormData();
+    formData.append('name', this.form.value.name);
+    formData.append('description', this.form.value.description);
+    formData.append('price', this.form.value.price);
+    formData.append('image', this.selectedImage);
+    formData.append('categorie', this.form.value.categorie);
+    formData.append('ingredients', this.form.value.ingredients);
+
+    console.log(formData.get('image'));
+    console.log(formData.getAll);
+
+    this.ProductsService.createProduct(formData).subscribe(
       (res) => {
-        // console.log(res);
         // preparer message d'alerte
         this.alert.type = 'success';
         this.alert.message = 'Product created successfully';
         // enregistrer en localStorage
         localStorage.setItem('alert', JSON.stringify(this.alert));
-        // console.log(localStorage.getItem('alert'));
         // reload page
         window.location.reload();
       },
@@ -114,7 +124,6 @@ export class CreateProductComponent implements OnInit {
         this.alert.message = err.error.message;
       }
     );
-
   }
 
   add(event: MatChipInputEvent): void {
@@ -153,5 +162,10 @@ export class CreateProductComponent implements OnInit {
     return list.filter((val) =>
       val.toLowerCase().includes(value.toLowerCase())
     );
+  }
+
+  selectFile(event: any): void {
+    this.selectedImage = event.target.files[0];
+    // console.log(this.selectedImage);
   }
 }
