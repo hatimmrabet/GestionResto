@@ -19,4 +19,10 @@ export class MenusService {
     });
   }
 
+  createMenu(menu : FormData) : Observable<Menu> {
+    return this.httpClient.post<Menu>(this.API, menu, {
+      headers: this.authGuard.getTokenHeader(),
+    });
+  }
+
 }

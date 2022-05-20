@@ -7,7 +7,7 @@
     </div>
     <div class="col-10">
       <div class="container p-3">
-        <h3>Create Product</h3>
+        <h3>Create Menu</h3>
 
         <div class="p-5 mx-auto">
 
@@ -52,19 +52,18 @@
 
             <div class="row">
               <div class="form-group col-md-6 mb-2">
-                <mat-form-field appearance="fill">
-                  <mat-label>Image</mat-label>
-                  <input matInput type="file" formControlName="image" required>
-                  <mat-error *ngIf="formControl['image'].touched && formControl['image'].invalid">
-                    A picture is required.
-                  </mat-error>
-                </mat-form-field>
+                <input class="form-control form-control" (change)="selectFile($event)" type="file" accept="image/png, image/jpeg"
+                  formControlName="image">
+                <div class="invalid-feedback" style="display: block;"
+                  *ngIf="formControl['image'].touched && formControl['image'].invalid">
+                  A picture is required.
+                </div>
               </div>
             </div>
 
             <mat-selection-list #shoes formControlName="produits">
-              <mat-list-option *ngFor="let prod of products" [value]="prod" >
-                <img mat-list-avatar src="http://localhost:8080/content/images/{{prod.image}}" alt="">
+              <mat-list-option *ngFor="let prod of products" [value]="prod.id" >
+                <img mat-list-avatar style="width: 90px;height: 90px;border-radius: 0%;" src="http://localhost:8080/content/images/{{prod.image}}" alt="">
                 <div mat-line>{{prod.name}}</div>
                 <div mat-line> {{prod.description }} </div>
                 <div mat-line> {{prod.price }} € </div>
@@ -74,7 +73,7 @@
 
             <div class="form-group mb-2">
               <input type="submit" name="submit" value="Enregistrer" class="btn btn-primary font-weight-bold mt-1"
-                style="border-radius: 0.25rem; font-size: 16px;"  />
+                style="border-radius: 0.25rem; font-size: 16px;" [disabled]="form.invalid"  />
             </div>
           </form>
         </div>

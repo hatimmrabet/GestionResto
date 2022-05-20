@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
+import { MenusService } from 'src/app/services/menus.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -11,12 +12,14 @@ import { ProductsService } from 'src/app/services/products.service';
 export class CreateMenuComponent implements OnInit {
   form: FormGroup;
   alert = { type: '', message: '' };
-  categories_name : String[] = []
-  products : Product[] = []
+  categories_name: String[] = [];
+  products: Product[] = [];
+  selectedImage: File;
 
   constructor(
     private formBuilder: FormBuilder,
-    private ProductService: ProductsService
+    private ProductService: ProductsService,
+    private MenuService: MenusService
   ) {}
 
   ngOnInit(): void {
@@ -35,20 +38,17 @@ export class CreateMenuComponent implements OnInit {
     });
 
     // get all products
-    this.ProductService.getProducts().subscribe(
-      (res) => {
-        // tous les produits
-        this.products = res;
+    this.ProductService.getProducts().subscribe((res) => {
+      // tous les produits
+      this.products = res;
 
-        this.products.forEach((element : Product) => {
-          if(!this.categories_name.includes(element.categorie.id)){
-            this.categories_name.push(element.categorie.id)
-          }
-        });
-        console.log(this.categories_name);
-      }
-    )
-
+      this.products.forEach((element: Product) => {
+        if (!this.categories_name.includes(element.categorie.id)) {
+          this.categories_name.push(element.categorie.id);
+        }
+      });
+      console.log(this.categories_name);
+    });
   }
 
   get formControl() {
@@ -57,26 +57,37 @@ export class CreateMenuComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
+    const formData = new FormData();
+    formData.append('name', this.form.value.name);
+    formData.append('description', this.form.value.description);
+    formData.append('price', this.form.value.price);
+    formData.append('image', this.selectedImage);
+    formData.append('produits', this.form.value.produits);
 
-
-    // this.ProductService.createProduct(this.form.value).subscribe(
-    //   (res) => {
-    //     // console.log(res);
-    //     // preparer message d'alerte
-    //     this.alert.type = 'success';
-    //     this.alert.message = 'Product created successfully';
-    //     // enregistrer en localStorage
-    //     localStorage.setItem('alert', JSON.stringify(this.alert));
-    //     // console.log(localStorage.getItem('alert'));
-    //     // reload page
-    //     window.location.reload();
-    //   },
-    //   (err) => {
-    //     this.alert.type = 'danger';
-    //     this.alert.message = err.error.message;
-    //   }
-    // );
+    this.MenuService.createMenu(formData).subscribe(
+      (res) => {
+        // console.log(res);
+        // preparer message d'alerte
+        this.alert.type = 'success';
+        this.alert.message = 'Menu created successfully';
+        // enregistrer en localStorage
+        localStorage.setItem('alert', JSON.stringify(this.alert));
+        // reload page
+        window.location.reload();
+      },
+      (err) => {
+        this.alert.type = 'danger';
+        console.log(err);
+        this.alert.message = err.error.response;
+        // enregistrer en localStorage
+        localStorage.setItem('alert', JSON.stringify(this.alert));
+      }
+    );
   }
 
+  selectFile(event: any): void {
+    this.selectedImage = event.target.files[0];
+    // console.log(this.selectedImage);
+  }
 
 }
