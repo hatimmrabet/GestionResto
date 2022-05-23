@@ -43,6 +43,7 @@ import { AllProductsComponent } from './components/all-products/all-products.com
 import { CreateMenuComponent } from './components/create-menu/create-menu.component';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DisplayProductsComponent } from './components/display-products/display-products.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     TestComponent,
     AllMenusComponent,
     CreateMenuComponent,
+    DisplayProductsComponent,
   ],
   imports: [
     BrowserModule,

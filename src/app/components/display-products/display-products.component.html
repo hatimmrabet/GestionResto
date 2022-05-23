@@ -1,0 +1,61 @@
+<app-public-header></app-public-header>
+<div class="container">
+  <section id="menu" class="menu">
+    <div class="container">
+      <div class="section-title">
+        <h2>Check our tasty <span>Menu</span></h2>
+      </div>
+
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+        <li ngbNavItem="Menu">
+          <a ngbNavLink>Nos Menus</a>
+          <ng-template ngbNavContent>
+            <div class="row row-cols-1 row-cols-md-4 g-4 p-3">
+              <div *ngFor="let menu of menus" class="col">
+                <div class="card h-100">
+                  <img src="http://localhost:8080/content/images/{{menu.image}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ menu.name }}</h5>
+                    <p class="card-text">{{ menu.description}}</p>
+                  </div>
+                  <div class="card-footer">
+                    <button type="button" class="btn btn-primary btn-sm">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+              <p *ngIf="menus.length == 0" class="col">
+                Aucun produit dans cette catégorie.
+              </p>
+            </div>
+          </ng-template>
+        </li>
+
+        <li *ngFor="let cat of productsByCategory | keyvalue" [ngbNavItem]="cat.key">
+          <a ngbNavLink>{{cat.key}}</a>
+          <ng-template ngbNavContent>
+            <div class="row row-cols-1 row-cols-md-4 g-4 p-3">
+              <div *ngFor="let prod of cat.value" class="col">
+                <div class="card h-100">
+                  <img src="http://localhost:8080/content/images/{{prod.image}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ prod.name }}</h5>
+                    <p class="card-text">{{ prod.description}}</p>
+                  </div>
+                  <div class="card-footer">
+                    <button type="button" class="btn btn-primary btn-sm">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+              <p *ngIf="cat.value.length == 0" class="col">
+                Aucun produit dans cette catégorie.
+              </p>
+            </div>
+          </ng-template>
+        </li>
+
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </section>
+</div>

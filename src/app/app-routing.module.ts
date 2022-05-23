@@ -7,6 +7,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { CreateMenuComponent } from './components/create-menu/create-menu.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
@@ -36,6 +37,9 @@ const routes: Routes = [
     path: 'all-menus',
     // canActivate: [AuthGuardService],
     component: AllMenusComponent,
+  },
+  {
+    path: 'display-products', component: DisplayProductsComponent
   },
   {
     path: 'test',

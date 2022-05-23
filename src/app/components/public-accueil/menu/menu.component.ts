@@ -8,6 +8,7 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['../public-accueil.component.scss', './menu.component.scss'],
 })
 export class PublicAccueilMenuComponent implements OnInit {
+
   productsByCategory: Record<string, Product[]>;
   active: string;
 

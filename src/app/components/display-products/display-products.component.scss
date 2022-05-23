@@ -1,0 +1,13 @@
+.card {
+  img {
+    object-fit: scale-down;
+    height: 200px;
+  }
+
+  p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
