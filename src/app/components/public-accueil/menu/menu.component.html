@@ -5,102 +5,55 @@
       <h2>Check our tasty <span>Menu</span></h2>
     </div>
 
-    <div class="row">
-      <div class="col-lg-12 d-flex justify-content-center">
-        <ul id="menu-flters">
-          <li data-filter="*" class="filter-active">Show All</li>
-          <li data-filter=".filter-starters">Starters</li>
-          <li data-filter=".filter-salads">Salads</li>
-          <li data-filter=".filter-specialty">Specialty</li>
-        </ul>
-      </div>
-    </div>
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+      <li *ngFor="let cat of productsByCategory | keyvalue" [ngbNavItem]="cat.key">
+        <a ngbNavLink>{{cat.key}}</a>
+        <ng-template ngbNavContent>
+          <div class="row row-cols-1 row-cols-md-4 g-4 p-3">
+            <div *ngFor="let prod of cat.value" class="col">
+              <div class="card h-100">
+                <img src="http://localhost:8080/content/images/{{prod.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ prod.name }}</h5>
+                  <p class="card-text">{{ prod.description}}</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+            </div>
+            <p *ngIf="cat.value.length == 0" class="col">
+              Aucun produit dans cette catégorie.
+            </p>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
-    <div class="row menu-container">
-      <div class="col-lg-6 menu-item filter-starters">
-        <div class="menu-content">
-          <a href="#">Lobster Bisque</a><span>$5.95</span>
-        </div>
-        <div class="menu-ingredients">
-          Lorem, deren, trataro, filede, nerada
-        </div>
-      </div>
 
-      <div class="col-lg-6 menu-item filter-specialty">
-        <div class="menu-content">
-          <a href="#">Bread barrel</a><span>$6.95</span>
+    <!-- <mat-tab-group mat-align-tabs="center">
+      <mat-tab *ngFor="let cat of productsByCategory | keyvalue" label="{{cat.key}}">
+        <div class="card-deck p">
+            <div class="card mr-3" style="width: 18rem;" *ngFor="let prod of cat.value">
+              <img class="card-img-top" src="http://localhost:8080/content/images/{{prod.image}}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content.
+                  This content is a little bit longer.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          <div *ngIf="cat.value.length == 0">
+            Aucun produit pour cette categorie.
+          </div>
         </div>
-        <div class="menu-ingredients">
-          Lorem, deren, trataro, filede, nerada
-        </div>
-      </div>
+      </mat-tab>
+    </mat-tab-group> -->
 
-      <div class="col-lg-6 menu-item filter-starters">
-        <div class="menu-content">
-          <a href="#">Crab Cake</a><span>$7.95</span>
-        </div>
-        <div class="menu-ingredients">
-          A delicate crab cake served on a toasted roll with lettuce and
-          tartar sauce
-        </div>
-      </div>
-
-      <div class="col-lg-6 menu-item filter-salads">
-        <div class="menu-content">
-          <a href="#">Caesar Selections</a><span>$8.95</span>
-        </div>
-        <div class="menu-ingredients">
-          Lorem, deren, trataro, filede, nerada
-        </div>
-      </div>
-
-      <div class="col-lg-6 menu-item filter-specialty">
-        <div class="menu-content">
-          <a href="#">Tuscan Grilled</a><span>$9.95</span>
-        </div>
-        <div class="menu-ingredients">
-          Grilled chicken with provolone, artichoke hearts, and roasted red
-          pesto
-        </div>
-      </div>
-
-      <div class="col-lg-6 menu-item filter-starters">
-        <div class="menu-content">
-          <a href="#">Mozzarella Stick</a><span>$4.95</span>
-        </div>
-        <div class="menu-ingredients">
-          Lorem, deren, trataro, filede, nerada
-        </div>
-      </div>
-
-      <div class="col-lg-6 menu-item filter-salads">
-        <div class="menu-content">
-          <a href="#">Greek Salad</a><span>$9.95</span>
-        </div>
-        <div class="menu-ingredients">
-          Fresh spinach, crisp romaine, tomatoes, and Greek olives
-        </div>
-      </div>
-
-      <div class="col-lg-6 menu-item filter-salads">
-        <div class="menu-content">
-          <a href="#">Spinach Salad</a><span>$9.95</span>
-        </div>
-        <div class="menu-ingredients">
-          Fresh spinach with mushrooms, hard boiled egg, and warm bacon
-          vinaigrette
-        </div>
-      </div>
-
-      <div class="col-lg-6 menu-item filter-specialty">
-        <div class="menu-content">
-          <a href="#">Lobster Roll</a><span>$12.95</span>
-        </div>
-        <div class="menu-ingredients">
-          Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 <!-- End Menu Section -->

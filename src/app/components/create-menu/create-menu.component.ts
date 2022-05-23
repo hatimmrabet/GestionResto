@@ -14,7 +14,7 @@ export class CreateMenuComponent implements OnInit {
   alert = { type: '', message: '' };
   products: Product[] = [];
   selectedImage: File;
-  productsByCategory: Map<string, Product[]> = new Map();
+  productsByCategory: Record<string, Product[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,9 +40,8 @@ export class CreateMenuComponent implements OnInit {
     // get products by categories
     this.ProductService.getProductsGroupByCategories().subscribe((res) => {
       this.productsByCategory = res;
-      console.log(this.productsByCategory);
+      // console.log(this.productsByCategory);
     });
-
   }
 
   get formControl() {
@@ -83,5 +82,4 @@ export class CreateMenuComponent implements OnInit {
     this.selectedImage = event.target.files[0];
     // console.log(this.selectedImage);
   }
-
 }

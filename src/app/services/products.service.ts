@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
-import { ProductRequest } from '../models/product-request.model';
 import { AuthGuardService } from './auth-guard.service';
 
 @Injectable({
@@ -32,8 +31,8 @@ export class ProductsService {
     });
   }
 
-  getProductsGroupByCategories() : Observable<Map<string, Product[]>> {
-    return this.httpClient.get<Map<string, Product[]>>(
+  getProductsGroupByCategories() : Observable<Record<string, Product[]>> {
+    return this.httpClient.get<Record<string, Product[]>>(
       this.API + '/group-by-categories',
       {
         headers: this.authGuardService.getTokenHeader(),

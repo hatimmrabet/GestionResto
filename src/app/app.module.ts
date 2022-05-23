@@ -42,6 +42,7 @@ import { AllMenusComponent } from './components/all-menus/all-menus.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { CreateMenuComponent } from './components/create-menu/create-menu.component';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { MatListModule } from '@angular/material/list';
     NgbModule,
     BrowserAnimationsModule,
     MatSliderModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatIconModule, MatButtonModule, MatDatepickerModule,
-    MatNativeDateModule, MatTableModule, MatPaginatorModule, MatAutocompleteModule, MatChipsModule, MatListModule
+    MatNativeDateModule, MatTableModule, MatPaginatorModule, MatAutocompleteModule, MatChipsModule, MatListModule, MatTabsModule,
+
   ],
   providers: [AuthService, ProductsService, UsersService],
   bootstrap: [AppComponent],
