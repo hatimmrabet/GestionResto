@@ -1,17 +1,13 @@
-export class ProductRequest {
-  name: string;
-  description: string;
-  image: string;
-  price: number;
+import { Article } from "./Article";
+
+export class ProductRequest extends Article {
+
   categorie: string;
   ingredients: string[];
 
   constructor(data: any)
   {
-    this.name = data.name;
-    this.description = data.description;
-    this.image = data.image;
-    this.price = data.price;
+    super(null, data.name, data.description, data.image, data.price);
     this.categorie = data.categorie;
     this.ingredients = data.ingredients;
   }

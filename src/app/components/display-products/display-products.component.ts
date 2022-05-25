@@ -3,6 +3,7 @@ import { Menu } from 'src/app/models/Menu.model';
 import { Product } from 'src/app/models/product.model';
 import { MenusService } from 'src/app/services/menus.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-display-products',
@@ -15,7 +16,7 @@ export class DisplayProductsComponent implements OnInit {
   productsByCategory: Record<string, Product[]>;
   active: string;
 
-  constructor(private productService: ProductsService, private menuService: MenusService) {}
+  constructor(private productService: ProductsService, private menuService: MenusService, private shoppingCart: ShoppingCartService) {}
 
   ngOnInit(): void {
     this.menuService.getMenus().subscribe((menus) => {
@@ -29,4 +30,21 @@ export class DisplayProductsComponent implements OnInit {
       // console.log(this.productsByCategory);
     });
   }
+
+  onAddToCartProduct(product: Product) {
+    this.shoppingCart.addToCartProduct(product);
+  }
+
+  onAddToCartMenu(menu: Menu) {
+    this.shoppingCart.addToCartMenu(menu);
+  }
+
+  // onRemoveFromCartProduct(product: Product) {
+  //   this.shoppingCart.removeFromCartProduct(product);
+  // }
+
+  // onRemoveFromCartMenu(menu: Menu) {
+  //   this.shoppingCart.removeFromCartMenu(menu);
+  // }
+
 }

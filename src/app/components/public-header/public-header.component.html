@@ -33,14 +33,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container">
     <a class="navbar-brand" routerLink=""><img src="assets/img/logo/logo_black.png" style="width: 75px;" /></a>
-    <form action="#" class="searchform order-sm-start order-lg-last">
-      <div class="form-group d-flex">
-        <input type="text" class="form-control pl-3" placeholder="Search" />
-        <button type="submit" placeholder="" class="form-control search">
-          <span class="fa fa-search"></span>
-        </button>
-      </div>
-    </form>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="fa fa-bars"></span> Menu
@@ -61,9 +53,11 @@
             <a class="dropdown-item" routerLink="#">Page 4</a>
           </div>
         </li>
-        <li class="nav-item"><a routerLink="/display-products" class="nav-link">My Cart <i class="bi bi-cart2"></i><span
-              class="badge bg-warning">5</span>
-          </a></li>
+        <li class="nav-item">
+          <a routerLink="/shopping-cart" class="nav-link">My Cart <i class="bi bi-cart2"></i>
+            <span class="badge bg-dark" style="font-size: 9px;">{{(nbItems() | async)}}</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

@@ -1,25 +1,25 @@
+import { Article } from "./Article";
 import { Categorie } from "./Categorie.model";
 import { Ingredient } from "./Ingredient.model";
 
-export class Product {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  price: number;
+export class Product extends Article {
   ingredients: Ingredient[];
   categorie: Categorie;
 
-
-  constructor(id: string, name: string, description: string, image: string, price: number, categorie: Categorie, ingredients: Ingredient[]) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.image = image;
-    this.price = price;
+  constructor(
+    id: string,
+    name: string,
+    description: string,
+    image: string,
+    price: number,
+    categorie: Categorie,
+    ingredients: Ingredient[]
+  ) {
+    super(id, name, description, image, price);
     this.ingredients = ingredients;
-    this.categorie =  categorie;
+    this.categorie = categorie;
   }
 
-
 }
+
+

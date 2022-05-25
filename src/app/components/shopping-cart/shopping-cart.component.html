@@ -1,0 +1,40 @@
+<app-public-header></app-public-header>
+
+<div class="container p-3">
+  <h3>Your Shopping Cart:</h3>
+
+  <div class="row">
+    <div class="col-8">
+      <div class="card">
+        <h5 class="card-header">Votre commande</h5>
+        <div class="card-body">
+
+          <div *ngIf="cmd.items.length === 0">
+            <img src="assets/img/cart/empty-cart.png" alt="Empty cart" class="img-fluid">
+          </div>
+
+          <div *ngFor="let item of cmd.items" class="border-bottom p-2">
+            <h5 class="card-title">{{ item.quantity }}x {{ item.article.name }}</h5>
+            <p class="card-text" style="margin-bottom: 0px;" *ngIf="getProductsFromArticle(item.article).length != 0">Les produits :</p>
+            <p class="card-text" style="margin-bottom: 0px;margin-left: 20px;" *ngFor="let prod of getProductsFromArticle(item.article)"> - {{prod.name}}</p>
+            <p class="card-text" style="margin-bottom: 0px;">Prix unitaire : {{item.article.price }} €</p>
+            <p class="card-text">Prix Total : {{item.article.price * item.quantity }} €</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <h5 class="card-header">Payement</h5>
+        <div class="card-body">
+          <p class="card-text">Total : <b>{{ cmd.price }} €</b></p>
+          <div class="d-grid gap-2 d-md-flex justify-content-center">
+            <button type="button" class="btn btn-primary">Valider la commande</button>
+            <button type="button" class="btn btn-danger" (click)="clearCart()">Vider le panier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

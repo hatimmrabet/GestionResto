@@ -20,7 +20,7 @@
                     <p class="card-text">{{ menu.description}}</p>
                   </div>
                   <div class="card-footer">
-                    <button type="button" class="btn btn-primary btn-sm">Add to Cart</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="onAddToCartMenu(menu)">Add to Cart</button>
                   </div>
                 </div>
               </div>
@@ -43,7 +43,7 @@
                     <p class="card-text">{{ prod.description}}</p>
                   </div>
                   <div class="card-footer">
-                    <button type="button" class="btn btn-primary btn-sm">Add to Cart</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="onAddToCartProduct(prod)">Add to Cart</button>
                   </div>
                 </div>
               </div>

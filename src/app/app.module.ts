@@ -44,6 +44,7 @@ import { CreateMenuComponent } from './components/create-menu/create-menu.compon
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { DisplayProductsComponent } from './components/display-products/display-
     AllMenusComponent,
     CreateMenuComponent,
     DisplayProductsComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,

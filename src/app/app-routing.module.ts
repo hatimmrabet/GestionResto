@@ -11,6 +11,7 @@ import { DisplayProductsComponent } from './components/display-products/display-
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { TestComponent } from './components/test/test.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -42,8 +43,7 @@ const routes: Routes = [
     path: 'display-products', component: DisplayProductsComponent
   },
   {
-    path: 'test',
-    component: TestComponent,
+    path: 'shopping-cart', component: ShoppingCartComponent,
   },
   {
     path: 'create-user',
