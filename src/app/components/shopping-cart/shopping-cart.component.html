@@ -13,12 +13,27 @@
             <img src="assets/img/cart/empty-cart.png" alt="Empty cart" class="img-fluid">
           </div>
 
-          <div *ngFor="let item of cmd.items" class="border-bottom p-2">
-            <h5 class="card-title">{{ item.quantity }}x {{ item.article.name }}</h5>
-            <p class="card-text" style="margin-bottom: 0px;" *ngIf="getProductsFromArticle(item.article).length != 0">Les produits :</p>
-            <p class="card-text" style="margin-bottom: 0px;margin-left: 20px;" *ngFor="let prod of getProductsFromArticle(item.article)"> - {{prod.name}}</p>
-            <p class="card-text" style="margin-bottom: 0px;">Prix unitaire : {{item.article.price }} €</p>
-            <p class="card-text">Prix Total : {{item.article.price * item.quantity }} €</p>
+          <div *ngFor="let item of cmd.items" class="border-bottom p-2 row">
+
+            <div class="col-9">
+              <h5 class="card-title">{{ item.quantity }}x {{ item.article.name }}</h5>
+              <p class="card-text" style="margin-bottom: 0px;" *ngIf="getProductsFromArticle(item.article).length != 0">
+                Les produits :</p>
+              <p class="card-text" style="margin-bottom: 0px;margin-left: 20px;"
+                *ngFor="let prod of getProductsFromArticle(item.article)"> - {{prod.name}}</p>
+            </div>
+
+            <div class="col-3">
+              <p class="card-text" style="margin-bottom: 0px;">Prix unitaire : {{item.article.price }} €</p>
+              <p class="card-text">Prix Total : {{item.article.price * item.quantity }} €</p>
+              <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeFromCart(item.article)"><i
+                    class="bi bi-dash"></i></button>
+                <button type="button" class="btn btn-light">{{item.quantity}}</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="addToCart(item.article)"><i
+                    class="bi bi-plus"></i></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -27,9 +42,35 @@
       <div class="card">
         <h5 class="card-header">Payement</h5>
         <div class="card-body">
+
+          <div *ngIf="alert.message.length != 0" class="alert alert-{{alert.type}} text-center" role="alert">
+            {{alert.message}}
+          </div>
+
+          <form [formGroup]="form" class="mb-3 row">
+            <label for="staticEmail" class="col-sm-4 col-form-label">Type de commande</label>
+            <div class="col-sm-8">
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Select an option</mat-label>
+                <mat-select formControlName="type" [(value)]="selectedType">
+                  <mat-option>Choisissez un type</mat-option>
+                  <mat-option value="SUP">Sur Place</mat-option>
+                  <mat-option value="EMP">A Emporter</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['type'].touched && form.controls['type'].invalid">
+                  Veuillez choisir un type de commande
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </form>
           <p class="card-text">Total : <b>{{ cmd.price }} €</b></p>
+          <p *ngIf="!isLoggedIn()" class="text-danger text-center">
+            <b>Veuillez vous connectez pour pouvoir payer et valider votre commande</b>
+          </p>
           <div class="d-grid gap-2 d-md-flex justify-content-center">
-            <button type="button" class="btn btn-primary">Valider la commande</button>
+            <button type="button" class="btn btn-primary"
+              [disabled]="form.invalid || !isLoggedIn() || cmd.items.length == 0" (click)="validateCart(cmd)">Valider
+              la commande</button>
             <button type="button" class="btn btn-danger" (click)="clearCart()">Vider le panier</button>
           </div>
         </div>

@@ -19,8 +19,14 @@
                     <h5 class="card-title">{{ menu.name }}</h5>
                     <p class="card-text">{{ menu.description}}</p>
                   </div>
-                  <div class="card-footer">
-                    <button type="button" class="btn btn-primary btn-sm" (click)="onAddToCartMenu(menu)">Add to Cart</button>
+                  <div class="card-footer text-center">
+                    <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-danger btn-sm" (click)="removeFromCart(menu)"><i
+                          class="bi bi-dash"></i></button>
+                      <button type="button" class="btn btn-light">{{articleQuantity(menu) | async}}</button>
+                      <button type="button" class="btn btn-primary btn-sm" (click)="addToCart(menu)"><i
+                          class="bi bi-plus"></i></button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -42,8 +48,12 @@
                     <h5 class="card-title">{{ prod.name }}</h5>
                     <p class="card-text">{{ prod.description}}</p>
                   </div>
-                  <div class="card-footer">
-                    <button type="button" class="btn btn-primary btn-sm" (click)="onAddToCartProduct(prod)">Add to Cart</button>
+                  <div class="card-footer text-center">
+                    <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-danger btn-sm" (click)="removeFromCart(prod)"><i class="bi bi-dash"></i></button>
+                      <button type="button" class="btn btn-light">{{ articleQuantity(prod) | async }}</button>
+                      <button type="button" class="btn btn-primary btn-sm" (click)="addToCart(prod)"><i class="bi bi-plus"></i></button>
+                    </div>
                   </div>
                 </div>
               </div>

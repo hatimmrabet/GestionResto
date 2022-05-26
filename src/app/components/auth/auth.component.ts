@@ -62,6 +62,7 @@ export class AuthComponent implements OnInit {
     this.authService.signInUser(user).then(
       (response: any) => {
         this.tokenStorageService.saveToken(response['accessToken']);
+        this.tokenStorageService.saveUser(new User(response));
         // redirection vers la page d'accueil privee
         this.router.navigate(['profil']);
       },

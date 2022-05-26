@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from 'src/app/models/Article';
 import { Menu } from 'src/app/models/Menu.model';
 import { Product } from 'src/app/models/product.model';
 import { MenusService } from 'src/app/services/menus.service';
@@ -8,20 +9,26 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 @Component({
   selector: 'app-display-products',
   templateUrl: './display-products.component.html',
-  styleUrls: ['./display-products.component.scss','../public-accueil/public-accueil.component.scss'],
+  styleUrls: [
+    './display-products.component.scss',
+    '../public-accueil/public-accueil.component.scss',
+  ],
 })
 export class DisplayProductsComponent implements OnInit {
-
   menus: Menu[] = [];
-  productsByCategory: Record<string, Product[]>;
+  productsByCategory: Record<string, Article[]>;
   active: string;
 
-  constructor(private productService: ProductsService, private menuService: MenusService, private shoppingCart: ShoppingCartService) {}
+  constructor(
+    private productService: ProductsService,
+    private menuService: MenusService,
+    private shoppingCart: ShoppingCartService
+  ) {}
 
   ngOnInit(): void {
     this.menuService.getMenus().subscribe((menus) => {
       this.menus = menus;
-      this.active = "Menu";
+      this.active = 'Menu';
       // console.log(this.active);
     });
 
@@ -31,20 +38,15 @@ export class DisplayProductsComponent implements OnInit {
     });
   }
 
-  onAddToCartProduct(product: Product) {
-    this.shoppingCart.addToCartProduct(product);
+  addToCart(product: Article) {
+    this.shoppingCart.addToCart(product);
   }
 
-  onAddToCartMenu(menu: Menu) {
-    this.shoppingCart.addToCartMenu(menu);
+  removeFromCart(product: Article) {
+    this.shoppingCart.removeFromCart(product);
   }
 
-  // onRemoveFromCartProduct(product: Product) {
-  //   this.shoppingCart.removeFromCartProduct(product);
-  // }
-
-  // onRemoveFromCartMenu(menu: Menu) {
-  //   this.shoppingCart.removeFromCartMenu(menu);
-  // }
-
+  articleQuantity(product: Article) {
+    return this.shoppingCart.articleQuantity(product);
+  }
 }

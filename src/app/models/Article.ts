@@ -7,7 +7,13 @@ export abstract class Article {
   image: string;
   price: number;
 
-  constructor(id: any, name: string, description: string, image: string, price: number) {
+  constructor(
+    id: any,
+    name: string,
+    description: string,
+    image: string,
+    price: number
+  ) {
     this.id = id;
     this.name = name;
     this.description = description;

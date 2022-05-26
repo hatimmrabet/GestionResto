@@ -1,20 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, take,  } from 'rxjs';
+import { BehaviorSubject, map, Observable, take } from 'rxjs';
+import { Article } from '../models/Article';
 import { Commande } from '../models/Commande.model';
 import { CommandeItem } from '../models/CommandeItem';
 import { Menu } from '../models/Menu.model';
 import { Product } from '../models/product.model';
+import { AuthGuardService } from './auth-guard.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
+  API = 'http://localhost:8080/commandes';
 
   private itemsSubject = new BehaviorSubject<Commande>(new Commande());
   cmd$ = this.itemsSubject.asObservable();
 
-  constructor() {
-    let cmd : Commande = new Commande();
+  constructor(
+    private httpClient: HttpClient,
+    private authGuard: AuthGuardService
+  ) {
+    let cmd: Commande = new Commande();
     let cart = localStorage.getItem('cart');
     if (cart === null) {
       cmd = new Commande();
@@ -30,58 +38,47 @@ export class ShoppingCartService {
     return this.cmd$;
   }
 
-  addToCartProduct(product: Product) {
-    this.cmd$.pipe(
-      take(1),
-      map((commande) => {
-        // pour les produits en peux verifier si c'est le meme produit
-        let i = commande.items.findIndex((item) => item.article === product);
-        if( i === -1) {
-          commande.items.push(new CommandeItem(product, 1));
-        } else {
-          commande.items[i].quantity++;
-        }
-        // console.log(commande.items);
-        // à chaque ajout on ajoute le prix
-        commande.price += product.price;
-        localStorage.setItem('cart', JSON.stringify(commande));
-      }),
-    ).subscribe();
+  addToCart(article: Article) {
+    this.cmd$
+      .pipe(
+        take(1),
+        map((commande) => {
+          let cmdItem: Article;
+          // check if article is product or menu
+          if((article as Product).ingredients){
+            cmdItem = article as Product;
+          }else{
+            cmdItem = article as Menu;
+          }
+          // pour les produits en peux verifier si c'est le meme produit
+          let i = commande.items.findIndex((item) =>
+            _.isEqual(item.article, cmdItem)
+          );
+          if (i === -1) {
+            commande.items.push(new CommandeItem(cmdItem, 1));
+          } else {
+            commande.items[i].quantity++;
+          }
+          // à chaque ajout on ajoute le prix
+          commande.price += cmdItem.price;
+          // console.log(commande.items);
+          localStorage.setItem('cart', JSON.stringify(commande));
+        })
+      )
+      .subscribe();
   }
-
-  addToCartMenu(menu: Menu) {
-    this.cmd$.pipe(
-      take(1),
-      map((commande) => {
-        // pour lesmenus il faut verifier si c'est le meme menu et puis les produits qui existe dedans
-        let i = commande.items.findIndex(
-          (item) =>
-            item.article.id === menu.id &&
-            (<Menu>item.article).produits === menu.produits
-        );
-        if (i === -1) {
-          commande.items.push(new CommandeItem(menu, 1));
-        } else {
-          commande.items[i].quantity++;
-        }
-        // console.log(commande);
-        commande.price += menu.price;
-        localStorage.setItem('cart', JSON.stringify(commande));
-      }),
-    ).subscribe();
-  }
-
-
 
   clearCart() {
-    this.cmd$.pipe(
-      take(1),
-      map((commande) => {
-        commande.items = [];
-        commande.price = 0;
-        localStorage.setItem('cart', JSON.stringify(commande));
-      }),
-    ).subscribe();
+    this.cmd$
+      .pipe(
+        take(1),
+        map((commande) => {
+          commande.items = [];
+          commande.price = 0;
+          localStorage.setItem('cart', JSON.stringify(commande));
+        })
+      )
+      .subscribe();
   }
 
   getCartPrice() {
@@ -98,11 +95,54 @@ export class ShoppingCartService {
       map((commande) => {
         return commande.items.length;
       })
-    )
+    );
   }
 
+  removeFromCart(article: Article) {
+    this.cmd$
+      .pipe(
+        take(1),
+        map((commande) => {
+          let i = commande.items.findIndex((item) => _.isEqual(item.article, article));
+          // article detecté
+          if (i !== -1) {
+            if (commande.items[i].quantity > 1) {
+              commande.items[i].quantity--;
+            } else {
+              commande.items.splice(i, 1);
+            }
+            commande.price -= article.price;
+            localStorage.setItem('cart', JSON.stringify(commande));
+          }
+        })
+      )
+      .subscribe();
+  }
 
+  validateCart(cmd: Commande): Observable<Commande> {
+    return this.httpClient.post<Commande>(this.API, cmd, {
+      headers: this.authGuard.getTokenHeader(),
+    });
+  }
+
+  articleQuantity(article: Article): Observable<number> {
+    return this.cmd$.pipe(
+      map((commande) => {
+        console.log(article)
+        // check if article is product or menu
+        let i : number;
+        if ((article as Product).ingredients) {
+          i = commande.items.findIndex((item) => _.isEqual(item.article, article) )
+        } else {
+          i = commande.items.findIndex((item) => _.isEqual(item.article, article) );
+        }
+        if (i !== -1) {
+          return commande.items[i].quantity;
+        } else {
+          return 0;
+        }
+      })
+    );
+  }
 
 }
-
-

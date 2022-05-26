@@ -45,6 +45,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { DetailsMenuComponent } from './components/details-menu/details-menu.component';
+import { DetailsProductComponent } from './components/details-product/details-product.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     CreateMenuComponent,
     DisplayProductsComponent,
     ShoppingCartComponent,
+    DetailsMenuComponent,
+    DetailsProductComponent,
   ],
   imports: [
     BrowserModule,
