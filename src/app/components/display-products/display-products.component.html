@@ -42,9 +42,9 @@
                     <h5 class="card-title">{{ prod.name }}</h5>
                     <p class="card-text">{{ prod.description}}</p>
                   </div>
-                  <div class="card-footer text-center">
-                    <a [routerLink]="['/details-product', prod.id]" class="btn btn-primary">Voir</a>
-                    <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
+                  <div class="card-footer text-center row m-0">
+                    <a [routerLink]="['/details-product', prod.id]" class="col-sm-6 btn btn-secondary">Voir <i class="bi bi-plus"></i></a>
+                    <div class="col-sm-6 btn-group justify-content-center" role="group" aria-label="Basic example">
                       <button type="button" class="btn btn-danger btn-sm" (click)="removeFromCart(prod)"><i class="bi bi-dash"></i></button>
                       <button type="button" class="btn btn-light">{{ articleQuantity(prod) | async }}</button>
                       <button type="button" class="btn btn-primary btn-sm" (click)="addToCart(prod)"><i class="bi bi-plus"></i></button>
