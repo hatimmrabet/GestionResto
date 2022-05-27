@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ERole } from 'src/app/models/ERole.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-private-sidebar',
@@ -8,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PrivateSidebarComponent implements OnInit {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private tokenStorageService: TokenStorageService) {}
 
   ngOnInit(): void {
   }
@@ -16,4 +18,18 @@ export class PrivateSidebarComponent implements OnInit {
   signOut() {
     this.authService.signOut();
   }
+
+  isAdmin() {
+    this.tokenStorageService.getUserRole() === ERole.ROLE_ADMIN;
+  }
+
+  isClient() {
+    this.tokenStorageService.getUserRole() === ERole.ROLE_CLIENT;
+  }
+
+  isWorker() {
+    this.tokenStorageService.getUserRole() === ERole.ROLE_WORKER;
+  }
+
+
 }

@@ -36,7 +36,7 @@ export class ShoppingCartComponent implements OnInit {
     this.shoppingCartService.getCommande().subscribe((cmd) => {
       this.cmd = cmd;
     });
-    console.log(this.cmd);
+    // console.log(this.cmd);
   }
 
   ngOnInit(): void {}
@@ -70,7 +70,7 @@ export class ShoppingCartComponent implements OnInit {
     console.log(cmd);
     this.shoppingCartService.validateCart(cmd).subscribe(
       (cmd) => {
-        console.log('commande enregistrer');
+        // console.log('commande enregistrer');
         this.alert.type = 'success';
         this.alert.message = 'Votre commande N° ' + cmd.numero + ' a été enregistrer';
         this.clearCart();

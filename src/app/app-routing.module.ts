@@ -14,7 +14,7 @@ import { OneProductComponent } from './components/one-product/one-product.compon
 import { ProfilComponent } from './components/profil/profil.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { TestComponent } from './components/test/test.component';
+import { ERole } from './models/ERole.model';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -29,16 +29,19 @@ const routes: Routes = [
   {
     path: 'all-users',
     canActivate: [AuthGuardService],
+    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: AllUsersComponent,
   },
   {
     path: 'all-products',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
+    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: AllProductsComponent,
   },
   {
     path: 'all-menus',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
+    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: AllMenusComponent,
   },
   {
@@ -52,16 +55,19 @@ const routes: Routes = [
   {
     path: 'create-user',
     canActivate: [AuthGuardService],
+    data: { roles : [ERole.ROLE_ADMIN] },
     component: CreateUserComponent,
   },
   {
     path: 'create-product',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
+    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: CreateProductComponent,
   },
   {
     path: 'create-menu',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
+    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: CreateMenuComponent,
   },
   {

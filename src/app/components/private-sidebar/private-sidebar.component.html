@@ -1,6 +1,6 @@
 <div class="p-3 bg-white">
   <ul class="list-unstyled ps-0">
-    <li class="mb-1">
+    <li *ngIf="isAdmin() or isWorker()" class="mb-1">
       <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
         data-bs-target="#home-collapse" aria-expanded="true">
         Home
@@ -9,11 +9,10 @@
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><a routerLink="/all-products" class="link-dark rounded">Products</a></li>
           <li><a routerLink="/all-menus" class="link-dark rounded">Menus</a></li>
-          <li><a href="#" class="link-dark rounded">Reports</a></li>
         </ul>
       </div>
     </li>
-    <li class="mb-1">
+    <li *ngIf="isAdmin()" class="mb-1">
       <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
         data-bs-target="#dashboard-collapse" aria-expanded="true">
         Users

@@ -18,7 +18,7 @@ export class AuthService {
 
   // login user
   signInUser(user: User) {
-    let requestBody = { email: user.Email, password: user.Password };
+    let requestBody = { email: user.email, password: user.password };
     return new Promise((resolve, reject) => {
       this.httpClient.post(this.API_URL + 'signin', requestBody).subscribe(
         (response) => {
