@@ -19,7 +19,7 @@ export class ProductsService {
     });
   }
 
-  getProduct(id: number) : Observable<Product> {
+  getProduct(id: string) : Observable<Product> {
     return this.httpClient.get<Product>(`${this.API}/${id}`, {
       headers: this.authGuardService.getTokenHeader(),
     });

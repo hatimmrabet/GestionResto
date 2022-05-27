@@ -8,6 +8,7 @@ import { CreateMenuComponent } from './components/create-menu/create-menu.compon
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { DetailsMenuComponent } from './components/details-menu/details-menu.component';
+import { DetailsProductComponent } from './components/details-product/details-product.component';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
@@ -69,7 +70,7 @@ const routes: Routes = [
   },
   {
     path: 'details-product/:id',
-    component: DetailsMenuComponent,
+    component: DetailsProductComponent,
   },
   { path: '**', redirectTo: 'index' },
 ];
