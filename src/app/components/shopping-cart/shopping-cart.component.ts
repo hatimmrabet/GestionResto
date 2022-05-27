@@ -67,7 +67,7 @@ export class ShoppingCartComponent implements OnInit {
   validateCart(cmd: Commande) {
     cmd.type = this.selectedType!!;
     cmd.client = this.TokenStorageService.getUser()!!;
-    console.log(cmd);
+    // console.log(cmd);
     this.shoppingCartService.validateCart(cmd).subscribe(
       (cmd) => {
         // console.log('commande enregistrer');
