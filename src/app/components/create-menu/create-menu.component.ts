@@ -49,7 +49,7 @@ export class CreateMenuComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
     const formData = new FormData();
     formData.append('name', this.form.value.name);
     formData.append('description', this.form.value.description);

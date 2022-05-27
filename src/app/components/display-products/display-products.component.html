@@ -20,13 +20,7 @@
                     <p class="card-text">{{ menu.description}}</p>
                   </div>
                   <div class="card-footer text-center">
-                    <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
-                      <button type="button" class="btn btn-danger btn-sm" (click)="removeFromCart(menu)"><i
-                          class="bi bi-dash"></i></button>
-                      <button type="button" class="btn btn-light">{{articleQuantity(menu) | async}}</button>
-                      <button type="button" class="btn btn-primary btn-sm" (click)="addToCart(menu)"><i
-                          class="bi bi-plus"></i></button>
-                    </div>
+                    <a [routerLink]="['/details-menu', menu.id]" class="btn btn-primary">Voir plus de details<i class="bi bi-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -49,6 +43,7 @@
                     <p class="card-text">{{ prod.description}}</p>
                   </div>
                   <div class="card-footer text-center">
+                    <a [routerLink]="['/details-product', prod.id]" class="btn btn-primary">Voir</a>
                     <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
                       <button type="button" class="btn btn-danger btn-sm" (click)="removeFromCart(prod)"><i class="bi bi-dash"></i></button>
                       <button type="button" class="btn btn-light">{{ articleQuantity(prod) | async }}</button>

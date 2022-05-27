@@ -1,0 +1,43 @@
+<app-public-header></app-public-header>
+<div class="container p-4 w-75">
+  <div *ngIf="loading" >
+    loading...
+  </div>
+  <div *ngIf="!loading" class="card">
+    <h5 class="card-header">Menu : {{ menu.name }}</h5>
+    <div class="card-body">
+      <div class="text-center">
+        <img src="http://localhost:8080/content/images/{{menu.image}}" style="height: 250px;" alt="...">
+      </div>
+      <h5 class="card-title">Description</h5>
+      <p class="card-text">{{menu.description}}</p>
+      <h5 class="card-title">Produits</h5>
+      <!-- <p *ngFor="let prod of menu.produits" class="card-text">{{prod.name}}</p> -->
+      <form [formGroup]="form">
+        <mat-selection-list #shoes formControlName="produits">
+          <div *ngFor="let cat of productsByCategory | keyvalue">
+            <div *ngIf="cat.value.length > 0">
+              <div mat-subheader> {{ cat.key }}</div>
+              <mat-list-option style="display: inline-block; width: 30%;" *ngFor="let prod of cat.value" [value]="prod">
+                <img mat-list-avatar style="width: 90px;height: 90px;border-radius: 0%;"
+                  src="http://localhost:8080/content/images/{{prod.image}}" alt="">
+                <div mat-line>{{prod.name}}</div>
+                <div mat-line> {{prod.description }} </div>
+                <div mat-line> {{prod.price }} € </div>
+                <div mat-line> {{prod.categorie.name }} </div>
+              </mat-list-option>
+            </div>
+          </div>
+        </mat-selection-list>
+      </form>
+      <ngb-toast *ngIf="show" class="text-center mx-auto m-2 bd-highlight" [autohide]="true" (hidden)="show=false">
+        Menu ajouté au panier.
+      </ngb-toast>
+      <div class="row text-center p-2 px-5">
+        <button class="btn btn-primary" (click)="addToCart()" [disabled]="!canOrder()">Ajouter au Panier</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-public-footer></app-public-footer>

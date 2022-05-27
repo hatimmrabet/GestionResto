@@ -128,7 +128,7 @@ export class ShoppingCartService {
   articleQuantity(article: Article): Observable<number> {
     return this.cmd$.pipe(
       map((commande) => {
-        console.log(article)
+        // console.log(article)
         // check if article is product or menu
         let i : number;
         if ((article as Product).ingredients) {

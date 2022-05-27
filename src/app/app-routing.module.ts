@@ -7,6 +7,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { CreateMenuComponent } from './components/create-menu/create-menu.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { DetailsMenuComponent } from './components/details-menu/details-menu.component';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
@@ -40,10 +41,12 @@ const routes: Routes = [
     component: AllMenusComponent,
   },
   {
-    path: 'display-products', component: DisplayProductsComponent
+    path: 'display-products',
+    component: DisplayProductsComponent,
   },
   {
-    path: 'shopping-cart', component: ShoppingCartComponent,
+    path: 'shopping-cart',
+    component: ShoppingCartComponent,
   },
   {
     path: 'create-user',
@@ -59,6 +62,14 @@ const routes: Routes = [
     path: 'create-menu',
     // canActivate: [AuthGuardService],
     component: CreateMenuComponent,
+  },
+  {
+    path: 'details-menu/:id',
+    component: DetailsMenuComponent,
+  },
+  {
+    path: 'details-product/:id',
+    component: DetailsMenuComponent,
   },
   { path: '**', redirectTo: 'index' },
 ];
