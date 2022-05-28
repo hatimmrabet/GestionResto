@@ -1,0 +1,70 @@
+<app-public-header></app-public-header>
+
+<div class="w-100">
+  <div class="row justify-content-start m-0">
+    <div class="col-2">
+      <app-private-sidebar></app-private-sidebar>
+    </div>
+    <div class="col-10">
+      <div class="container p-3">
+
+        <h3>Toutes les commandes</h3>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Etat</th>
+              <th scope="col">User</th>
+              <th scope="col">Produits</th>
+              <th scope="col">Price</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of displayedOrders; index as i">
+              <th scope="row">{{order.numero}}</th>
+              <td>{{ getStatus(order.etat) }}</td>
+              <td>{{ order.client.firstName }} {{order.client.lastName}} </td>
+              <td>
+                <ul style="list-style-type: none; padding: 0px;">
+                  <li *ngFor="let item of order.items">{{item.quantity}}x {{item.article.name}}
+                    <ul *ngIf="MenuProducts(item.article).length > 0"
+                      style="list-style-type: none; padding: 0px; margin-left: 20px;">
+                      <li *ngFor="let prod of MenuProducts(item.article)"> - {{prod.name}}</li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+              <td>{{ order.price }} €</td>
+              <td class="text-center align-middle">
+                <div class="btn-group-vertical">
+                  <button role="button" class="btn btn-primary btn-sm"
+                    (click)="changeStatus(order, EOrderStatus.IN_PROGRESS)">Preparation</button>
+                  <button role="button" class="btn btn-warning btn-sm"
+                    (click)="changeStatus(order, EOrderStatus.COMPLETED)">Terminer</button>
+                  <button role="button" class="btn btn-success btn-sm"
+                    (click)="changeStatus(order, EOrderStatus.DELIVERED)">Livrer</button>
+                  <button role="button" class="btn btn-danger btn-sm"
+                    (click)="changeStatus(order, EOrderStatus.CANCELED)">Annuler</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+            (pageChange)="refreshOrder()">
+          </ngb-pagination>
+
+          <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshOrder()">
+            <option [ngValue]="5" [selected]="true">5 items</option>
+            <option [ngValue]="10">10 items</option>
+            <option [ngValue]="25">25 item</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

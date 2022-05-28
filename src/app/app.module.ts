@@ -47,6 +47,8 @@ import { DisplayProductsComponent } from './components/display-products/display-
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { DetailsMenuComponent } from './components/details-menu/details-menu.component';
 import { DetailsProductComponent } from './components/details-product/details-product.component';
+import { AllOrdersComponent } from './components/all-orders/all-orders.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { DetailsProductComponent } from './components/details-product/details-pr
     ShoppingCartComponent,
     DetailsMenuComponent,
     DetailsProductComponent,
+    AllOrdersComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,6 @@ import { DetailsProductComponent } from './components/details-product/details-pr
     BrowserAnimationsModule,
     MatSliderModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatIconModule, MatButtonModule, MatDatepickerModule,
     MatNativeDateModule, MatTableModule, MatPaginatorModule, MatAutocompleteModule, MatChipsModule, MatListModule, MatTabsModule,
-
   ],
   providers: [AuthService, ProductsService, UsersService],
   bootstrap: [AppComponent],

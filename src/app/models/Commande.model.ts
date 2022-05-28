@@ -4,7 +4,7 @@ import { User } from "./user.model";
 export class Commande {
 
   id: string;
-  numero: number;
+  numero: string;
   date: Date;
   etat: string;
   type: string;

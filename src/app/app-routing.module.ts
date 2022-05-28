@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AllMenusComponent } from './components/all-menus/all-menus.component';
+import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { AuthComponent } from './components/auth/auth.component';
@@ -29,20 +30,26 @@ const routes: Routes = [
   {
     path: 'all-users',
     canActivate: [AuthGuardService],
-    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: AllUsersComponent,
   },
   {
     path: 'all-products',
     canActivate: [AuthGuardService],
-    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: AllProductsComponent,
   },
   {
     path: 'all-menus',
     canActivate: [AuthGuardService],
-    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: AllMenusComponent,
+  },
+  {
+    path: 'all-orders',
+    canActivate: [AuthGuardService],
+    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    component: AllOrdersComponent,
   },
   {
     path: 'display-products',
@@ -55,19 +62,19 @@ const routes: Routes = [
   {
     path: 'create-user',
     canActivate: [AuthGuardService],
-    data: { roles : [ERole.ROLE_ADMIN] },
+    data: { roles: [ERole.ROLE_ADMIN] },
     component: CreateUserComponent,
   },
   {
     path: 'create-product',
     canActivate: [AuthGuardService],
-    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: CreateProductComponent,
   },
   {
     path: 'create-menu',
     canActivate: [AuthGuardService],
-    data: { roles : [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
     component: CreateMenuComponent,
   },
   {

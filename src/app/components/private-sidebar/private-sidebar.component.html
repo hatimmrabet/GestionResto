@@ -1,6 +1,6 @@
 <div class="p-3 bg-white">
   <ul class="list-unstyled ps-0">
-    <li *ngIf="isAdmin() or isWorker()" class="mb-1">
+    <li *ngIf="isAdmin() || isWorker()" class="mb-1">
       <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
         data-bs-target="#home-collapse" aria-expanded="true">
         Home
@@ -31,8 +31,8 @@
       </button>
       <div class="collapse show" id="orders-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><a href="#" class="link-dark rounded">All orders</a></li>
-          <li><a href="#" class="link-dark rounded">Make order</a></li>
+          <li><a routerLink="/all-orders" class="link-dark rounded">All orders</a></li>
+          <li><a routerLink="/display-products" class="link-dark rounded">Make order</a></li>
         </ul>
       </div>
     </li>
