@@ -1,9 +1,15 @@
 <app-public-header></app-public-header>
 <div class="container p-4 w-75">
-  <div *ngIf="loading" >
+  <div *ngIf="loading">
     loading...
   </div>
   <div *ngIf="!loading" class="card">
+
+    <ngb-toast *ngIf="show" class="toast-container position-fixed bg-dark text-light fw-bold top-0 end-0 p-1 m-5"
+      style="z-index: 10" [autohide]="true" [delay]="1500" (hidden)="show=false">
+      Menu ajouté au panier.
+    </ngb-toast>
+
     <h5 class="card-header">Menu : {{ menu.name }}</h5>
     <div class="card-body">
       <div class="text-center">
@@ -32,9 +38,7 @@
           </div>
         </mat-selection-list>
       </form>
-      <ngb-toast *ngIf="show" class="text-center mx-auto m-2 bd-highlight" [autohide]="true" (hidden)="show=false">
-        Menu ajouté au panier.
-      </ngb-toast>
+
       <div class="row text-center p-2 px-5">
         <button class="btn btn-primary" (click)="addToCart()" [disabled]="!canOrder()">Ajouter au Panier</button>
       </div>
