@@ -20,15 +20,15 @@ export class PrivateSidebarComponent implements OnInit {
   }
 
   isAdmin() {
-    return this.tokenStorageService.getUserRole()!! === ERole.ROLE_ADMIN;
+    return this.tokenStorageService.getUserRole()!! === ERole.ADMIN;
   }
 
   isClient() {
-    return this.tokenStorageService.getUserRole() === ERole.ROLE_CLIENT;
+    return this.tokenStorageService.getUserRole() === ERole.CLIENT;
   }
 
   isWorker() {
-    return this.tokenStorageService.getUserRole() === ERole.ROLE_WORKER;
+    return this.tokenStorageService.getUserRole() === ERole.WORKER;
   }
 
 

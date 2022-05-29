@@ -31,25 +31,25 @@ const routes: Routes = [
   {
     path: 'all-users',
     canActivate: [AuthGuardService],
-    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ADMIN, ERole.WORKER] },
     component: AllUsersComponent,
   },
   {
     path: 'all-products',
     canActivate: [AuthGuardService],
-    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ADMIN, ERole.WORKER] },
     component: AllProductsComponent,
   },
   {
     path: 'all-menus',
     canActivate: [AuthGuardService],
-    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ADMIN, ERole.WORKER] },
     component: AllMenusComponent,
   },
   {
     path: 'all-orders',
     canActivate: [AuthGuardService],
-    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ADMIN, ERole.WORKER] },
     component: AllOrdersComponent,
   },
   {
@@ -68,19 +68,19 @@ const routes: Routes = [
   {
     path: 'create-user',
     canActivate: [AuthGuardService],
-    data: { roles: [ERole.ROLE_ADMIN] },
+    data: { roles: [ERole.ADMIN] },
     component: CreateUserComponent,
   },
   {
     path: 'create-product',
     canActivate: [AuthGuardService],
-    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ADMIN, ERole.WORKER] },
     component: CreateProductComponent,
   },
   {
     path: 'create-menu',
     canActivate: [AuthGuardService],
-    data: { roles: [ERole.ROLE_ADMIN, ERole.ROLE_WORKER] },
+    data: { roles: [ERole.ADMIN, ERole.WORKER] },
     component: CreateMenuComponent,
   },
   {
