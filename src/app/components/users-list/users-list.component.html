@@ -1,6 +1,8 @@
 <div class="container p-3">
   <h3>All users</h3>
 
+  <ngb-alert *ngIf="alert.message" class="text-center" [dismissible]="false" [type]="alert.type">{{alert.message }}</ngb-alert>
+
   <div class="table-responsive">
     <table class="table align-middle mb-0 bg-white">
       <thead class="">
@@ -8,8 +10,9 @@
           <th>Info</th>
           <th>Contact</th>
           <th>Status</th>
-          <th>Dates</th>
-          <th>Actions</th>
+          <th>Created</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -21,17 +24,23 @@
           <td>
             <p class="fw-normal mb-1">{{user.phoneNumber}}</p>
             <p class="text-muted mb-0">{{user.email}}</p>
+            <p class="text-muted mb-0">{{user.birthDate | date:'dd/MM/yyyy'}}</p>
           </td>
           <td>
-            <p><span class="badge bg-success">{{user.role}}</span></p>
+            <p>
+              <span *ngIf="user.role == EROLE.ADMIN" class="badge bg-primary w-100">{{user.role}}</span>
+              <span *ngIf="user.role == EROLE.WORKER" class="badge bg-success w-100">{{user.role}}</span>
+              <span *ngIf="user.role == EROLE.CLIENT" class="badge bg-warning w-100">{{user.role}}</span>
+            </p>
           </td>
           <td>
-            <p class="fw-normal mb-1">Birthday : {{user.birthDate | date:'dd/MM/yyyy'}}</p>
-            <p class="text-muted mb-0">Created : {{user.createdAt | date:'dd/MM/yyyy'}}</p>
-            <p class="text-muted mb-0">Updated : {{user.updatedAt | date:'dd/MM/yyyy'}}</p>
+            <p class="text-muted mb-0">{{user.createdAt | date:'dd/MM/yyyy'}}</p>
           </td>
-          <td>
-            <button type="button" class="btn btn-primary">Action</button>
+          <td class="text-center align-middle">
+            <a [routerLink]="['/update-user', user.id]" class="btn btn-warning btn-sm">Update</a>
+          </td>
+          <td class="text-center align-middle">
+            <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button>
           </td>
         </tr>
       </tbody>
