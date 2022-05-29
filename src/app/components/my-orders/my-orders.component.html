@@ -8,7 +8,7 @@
     <div class="col-10">
       <div class="container p-3">
 
-        <h3>Toutes les commandes</h3>
+        <h3>Toutes mes commandes</h3>
 
         <table class="table table-striped">
           <thead>
@@ -19,20 +19,25 @@
               <th scope="col">User</th>
               <th scope="col">Produits</th>
               <th scope="col">Price</th>
-              <th scope="col">Action</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let order of displayedOrders; index as i">
               <th scope="row">{{order.numero}}</th>
               <td>
-                <span *ngIf="order.etat == EOrderStatus.PENDING" class="badge bg-secondary w-100">{{ getStatus(order.etat) }}</span>
-                <span *ngIf="order.etat == EOrderStatus.IN_PROGRESS" class="badge bg-primary w-100">{{ getStatus(order.etat) }}</span>
-                <span *ngIf="order.etat == EOrderStatus.COMPLETED" class="badge bg-warning w-100">{{ getStatus(order.etat) }}</span>
-                <span *ngIf="order.etat == EOrderStatus.DELIVERED" class="badge bg-success w-100">{{ getStatus(order.etat) }}</span>
-                <span *ngIf="order.etat == EOrderStatus.CANCELED" class="badge bg-danger w-100">{{ getStatus(order.etat) }}</span>
+                <span *ngIf="order.etat == EOrderStatus.PENDING" class="badge bg-secondary w-100">{{
+                  getStatus(order.etat) }}</span>
+                <span *ngIf="order.etat == EOrderStatus.IN_PROGRESS" class="badge bg-primary w-100">{{
+                  getStatus(order.etat) }}</span>
+                <span *ngIf="order.etat == EOrderStatus.COMPLETED" class="badge bg-warning w-100">{{
+                  getStatus(order.etat) }}</span>
+                <span *ngIf="order.etat == EOrderStatus.DELIVERED" class="badge bg-success w-100">{{
+                  getStatus(order.etat) }}</span>
+                <span *ngIf="order.etat == EOrderStatus.CANCELED" class="badge bg-danger w-100">{{ getStatus(order.etat)
+                  }}</span>
               </td>
-              <td>{{ order.date | date:'dd/MM/yyyy' }} </td>
+              <td>{{ order.date | date:'dd/MM/yyyy'}} </td>
               <td>{{ order.client.firstName }} {{order.client.lastName}} </td>
               <td>
                 <ul style="list-style-type: none; padding: 0px;">
@@ -46,14 +51,8 @@
               </td>
               <td>{{ order.price }} €</td>
               <td class="text-center align-middle">
-                <div *ngIf="order.etat != EOrderStatus.CANCELED" class="btn-group-vertical">
-                  <button role="button" class="btn btn-primary btn-sm"
-                    (click)="changeStatus(order, EOrderStatus.IN_PROGRESS)">Preparation</button>
-                  <button role="button" class="btn btn-warning btn-sm"
-                    (click)="changeStatus(order, EOrderStatus.COMPLETED)">Terminer</button>
-                  <button role="button" class="btn btn-success btn-sm"
-                    (click)="changeStatus(order, EOrderStatus.DELIVERED)">Livrer</button>
-                  <button role="button" class="btn btn-danger btn-sm"
+                <div class="btn-group-vertical">
+                  <button *ngIf="order.etat == EOrderStatus.PENDING" role="button" class="btn btn-danger btn-sm"
                     (click)="changeStatus(order, EOrderStatus.CANCELED)">Annuler</button>
                 </div>
               </td>
