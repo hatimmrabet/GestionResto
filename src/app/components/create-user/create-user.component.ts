@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ERole } from 'src/app/models/ERole.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { SignUpValidator } from 'src/app/validators/signup.validator';
@@ -14,6 +15,7 @@ export class CreateUserComponent implements OnInit {
   hide = true;
   selected = null;
   alertSignup: { type: string; message: string };
+  ERole = ERole;
 
   constructor(
     private formBuilder: FormBuilder,

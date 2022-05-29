@@ -89,9 +89,9 @@
                   <mat-label>Type de compte</mat-label>
                   <mat-select formControlName="role" [(value)]="selected">
                     <mat-option>None</mat-option>
-                    <mat-option value="ROLE_CLIENT">Client</mat-option>
-                    <mat-option value="ROLE_WORKER">Worker</mat-option>
-                    <mat-option value="ROLE_ADMIN">Admin</mat-option>
+                    <mat-option [value]="ERole.CLIENT">Client</mat-option>
+                    <mat-option [value]="ERole.WORKER">Worker</mat-option>
+                    <mat-option [value]="ERole.ADMIN">Admin</mat-option>
                   </mat-select>
                   <mat-error *ngIf="signupControl['role'].touched && signupControl['role'].invalid">
                     You should select a valid type.
