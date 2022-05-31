@@ -31,4 +31,10 @@ export class MenusService {
     });
   }
 
+  editMenu(id: string, menu : FormData) : Observable<any> {
+    return this.httpClient.put(this.API + '/' + id, menu, {
+      headers: this.authGuard.getTokenHeader(),
+    });
+  }
+
 }

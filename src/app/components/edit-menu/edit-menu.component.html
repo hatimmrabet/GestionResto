@@ -14,7 +14,7 @@
     </div>
     <div class="col-10">
       <div class="container p-3">
-        <h3>Edit Product</h3>
+        <h3>Edit Menu</h3>
 
         <div class="p-5 mx-auto">
 
@@ -33,29 +33,13 @@
                 </mat-form-field>
               </div>
 
-              <div class="form-group col-md-3 mb-2">
+              <div class="form-group col-md-6 mb-2">
                 <mat-form-field appearance="fill">
                   <mat-label>Price</mat-label>
                   <input matInput type="number" min="0" placeholder="10 €" formControlName="price" required>
                   <span matSuffix>€</span>
                   <mat-error *ngIf="formControl['price'].touched && formControl['price'].invalid">
                     The price can be at least 0.
-                  </mat-error>
-                </mat-form-field>
-              </div>
-
-              <div class="form-group col-md-3 mb-2">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Categorie</mat-label>
-                  <input type="text" placeholder="Pick one" aria-label="Categorie" matInput formControlName="categorie"
-                    [matAutocomplete]="auto">
-                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredCategories | async" [value]="option">
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
-                  <mat-error *ngIf="formControl['categorie'].touched && formControl['categorie'].invalid">
-                    A categorie is required.
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -73,37 +57,35 @@
               </div>
             </div>
 
-            <div class="row">
-              <mat-form-field class="example-chip-list" appearance="fill">
-                <mat-label>Ingredients</mat-label>
-                <mat-chip-list #chipList aria-label="Ingredients">
-                  <mat-chip *ngFor="let ingredient of ingredients" (removed)="remove(ingredient)">
-                    {{ingredient}}
-                    <button matChipRemove>
-                      <mat-icon>cancel</mat-icon>
-                    </button>
-                  </mat-chip>
-                  <input placeholder="Nouvel ingredient..." #ingreInput formControlName="ingredients"
-                    [matAutocomplete]="autoIngredients" [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>
-                <mat-autocomplete #autoIngredients="matAutocomplete" (optionSelected)="selected($event)">
-                  <mat-option *ngFor="let ingredient of filteredIngred | async" [value]="ingredient">
-                    {{ingredient}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-            </div>
-
             <div class="form-check form-switch mb-2">
               <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" (change)="changeAddImage()">
               <label class="form-check-label" for="flexSwitchCheckDefault">Changer l'image</label>
             </div>
             <div *ngIf="addImage" class="row">
               <div class="form-group col-md-6 mb-2">
-                <input class="form-control form-control" (change)="selectFile($event)" type="file"
-                  accept="image/png, image/jpeg" formControlName="image">
+                <input class="form-control form-control" (change)="selectFile($event)" type="file" accept="image/png, image/jpeg"
+                  formControlName="image">
               </div>
+            </div>
+
+            <div class="row mt-3">
+              <h4>Les produits </h4>
+              <mat-selection-list #shoes formControlName="produits">
+                <div *ngFor="let cat of productsByCategory | keyvalue">
+                  <div *ngIf="cat.value.length > 0">
+                    <div mat-subheader> {{ cat.key }}</div>
+                    <mat-list-option style="display: inline-block; width: 30%;" *ngFor="let prod of cat.value"
+                      [value]="prod.id">
+                      <img mat-list-avatar style="width: 90px;height: 90px;border-radius: 0%;"
+                        src="http://localhost:8080/content/images/{{prod.image}}" alt="">
+                      <div mat-line>{{prod.name}}</div>
+                      <div mat-line> {{prod.description }} </div>
+                      <div mat-line> {{prod.price }} € </div>
+                      <div mat-line> {{prod.categorie.name }} </div>
+                    </mat-list-option>
+                  </div>
+                </div>
+              </mat-selection-list>
             </div>
 
             <div class="form-group mb-2">

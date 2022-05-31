@@ -51,6 +51,7 @@ import { AllOrdersComponent } from './components/all-orders/all-orders.component
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { EditMenuComponent } from './components/edit-menu/edit-menu.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     MyOrdersComponent,
     EditUserComponent,
     EditProductComponent,
+    EditMenuComponent,
   ],
   imports: [
     BrowserModule,
