@@ -11,6 +11,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { DetailsMenuComponent } from './components/details-menu/details-menu.component';
 import { DetailsProductComponent } from './components/details-product/details-product.component';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
@@ -89,6 +90,12 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: { roles: [ERole.ADMIN] },
     component: EditUserComponent,
+  },
+  {
+    path: 'edit-product/:id',
+    canActivate: [AuthGuardService],
+    data: { roles: [ERole.ADMIN, ERole.WORKER] },
+    component: EditProductComponent,
   },
   {
     path: 'details-menu/:id',

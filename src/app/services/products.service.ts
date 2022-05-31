@@ -31,6 +31,12 @@ export class ProductsService {
     });
   }
 
+  editProduct(id: string, product: FormData) {
+    return this.httpClient.put(`${this.API}/${id}`, product, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
   getProductsGroupByCategories() : Observable<Record<string, Product[]>> {
     return this.httpClient.get<Record<string, Product[]>>(
       this.API + '/group-by-categories',
