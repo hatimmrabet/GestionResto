@@ -37,6 +37,12 @@ export class ProductsService {
     });
   }
 
+  deleteProduct(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
   getProductsGroupByCategories() : Observable<Record<string, Product[]>> {
     return this.httpClient.get<Record<string, Product[]>>(
       this.API + '/group-by-categories',
