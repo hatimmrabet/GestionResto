@@ -49,6 +49,7 @@ import { DetailsMenuComponent } from './components/details-menu/details-menu.com
 import { DetailsProductComponent } from './components/details-product/details-product.component';
 import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
     DetailsProductComponent,
     AllOrdersComponent,
     MyOrdersComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

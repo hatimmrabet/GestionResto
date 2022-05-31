@@ -14,9 +14,7 @@ export class UsersListComponent implements OnInit {
   EROLE = ERole;
   alert: { type: string; message: string };
 
-  constructor(
-    private usersService: UsersService,
-  ) {}
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
     this.alert = { type: '', message: '' };
@@ -26,9 +24,14 @@ export class UsersListComponent implements OnInit {
   }
 
   deleteUser(id: string) {
-    this.usersService.deleteUser(id).subscribe(() => {
-      this.alert = { type: 'success', message: 'User deleted Successfully' };
-      this.userslist = this.userslist.filter((user) => user.id !== id);
-    });
+    this.usersService.deleteUser(id).subscribe(
+      () => {
+        this.alert = { type: 'success', message: 'User deleted Successfully' };
+        this.userslist = this.userslist.filter((user) => user.id !== id);
+      },
+      (error) => {
+        this.alert = { type: 'danger', message: error.error.response };
+      }
+    );
   }
 }

@@ -18,13 +18,13 @@
       <tbody>
         <tr *ngFor="let user of userslist;">
           <td>
-            <p class="fw-bold mb-1">{{user.firstName}} {{user.lastName}}</p>
+            <p class="fw-bold mb-0">{{user.firstName}} {{user.lastName}}</p>
             <p class="text-muted mb-0">{{user.address}}</p>
+            <p class="text-muted mb-0">{{user.birthDate | date:'dd/MM/yyyy'}}</p>
           </td>
           <td>
-            <p class="fw-normal mb-1">{{user.phoneNumber}}</p>
-            <p class="text-muted mb-0">{{user.email}}</p>
-            <p class="text-muted mb-0">{{user.birthDate | date:'dd/MM/yyyy'}}</p>
+            <p class="fw-normal mb-0">{{user.email}}</p>
+            <p class="fw-normal mb-0">{{user.phoneNumber}}</p>
           </td>
           <td>
             <p>
@@ -37,10 +37,10 @@
             <p class="text-muted mb-0">{{user.createdAt | date:'dd/MM/yyyy'}}</p>
           </td>
           <td class="text-center align-middle">
-            <a [routerLink]="['/update-user', user.id]" class="btn btn-warning btn-sm">Update</a>
+            <a *ngIf="user.email != 'user@deleted'" [routerLink]="['/edit-user', user.id]" class="btn btn-warning btn-sm w-100">Edit</a>
           </td>
           <td class="text-center align-middle">
-            <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button>
+            <button *ngIf="user.email != 'user@deleted'" class="btn btn-danger btn-sm w-100" (click)="deleteUser(user.id)">Delete</button>
           </td>
         </tr>
       </tbody>
