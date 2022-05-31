@@ -17,14 +17,13 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col" class="col">Name</th>
+              <th scope="col" class="col">#</th>
+              <th scope="col" class="col-2">Name</th>
               <th scope="col" class="col-3">Description</th>
               <th scope="col" class="col-2">Categorie</th>
               <th scope="col" class="col-2">Ingredients</th>
-              <th scope="col">Price</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th scope="col" class="col">Price</th>
+              <th scope="col" class="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -42,10 +41,13 @@
               </td>
               <td>{{ prod.price | number }} €</td>
               <td class="text-center align-middle">
-                <a [routerLink]="['/edit-product', prod.id]" role="button" class="btn btn-warning btn-sm">Update</a>
+                  <div class="btn-group-vertical w-100">
+                    <a [routerLink]="['/details-product',prod.id]" role="button" class="btn btn-primary btn-sm w-100">Details</a>
+                    <a [routerLink]="['/edit-product', prod.id]" role="button" class="btn btn-warning btn-sm">Edit</a>
+                    <button (click)="deleteProduct(prod.id)" role="button" class="btn btn-danger btn-sm">Delete</button>
+                  </div>
               </td>
               <td class="text-center align-middle">
-                <button (click)="deleteProduct(prod.id)" role="button" class="btn btn-danger btn-sm">Delete</button>
               </td>
             </tr>
           </tbody>

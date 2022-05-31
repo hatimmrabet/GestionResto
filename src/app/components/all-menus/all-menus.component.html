@@ -15,13 +15,12 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Produits</th>
-              <th scope="col">Price</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th scope="col" class="col">#</th>
+              <th scope="col" class="col-2">Name</th>
+              <th scope="col" class="col-4">Description</th>
+              <th scope="col" class="col-3">Produits</th>
+              <th scope="col" class="col">Price</th>
+              <th scope="col" class="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -30,7 +29,7 @@
                 <img [src]="'http://localhost:8080/content/images/'+menu.image" class="me-2" style="width: 50px">
               </th>
               <td>{{ menu.name }}</td>
-              <td>{{ menu.description }}</td>
+              <td >{{ menu.description }}</td>
               <td>
                 <ul style="list-style-type: none; padding: 0px;">
                   <li *ngFor="let prod of menu.produits">- {{prod.name}}</li>
@@ -38,10 +37,11 @@
               </td>
               <td>{{ menu.price | number }} €</td>
               <td class="text-center align-middle">
-                <a [routerLink]="['/edit-menu', menu.id]" role="button" class="btn btn-warning btn-sm">Update</a>
-              </td>
-              <td class="text-center align-middle">
-                <a [routerLink]="['/delete-product', menu.id]" role="button" class="btn btn-danger btn-sm">Delete</a>
+                <div class="btn-group-vertical w-100">
+                  <a [routerLink]="['/details-menu',menu.id]" role="button" class="btn btn-primary btn-sm w-100">Details</a>
+                  <a [routerLink]="['/edit-menu', menu.id]" role="button" class="btn btn-warning btn-sm">Edit</a>
+                  <a [routerLink]="['/delete-product', menu.id]" role="button" class="btn btn-danger btn-sm">Delete</a>
+                </div>
               </td>
             </tr>
           </tbody>
