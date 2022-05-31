@@ -10,12 +10,12 @@ import { MenusService } from 'src/app/services/menus.service';
 export class AllMenusComponent implements OnInit {
   menus: Menu[] = [];
   displayedMenus: Menu[] = [];
-
+  alert = { type: '', message: '' };
   page = 1;
   pageSize = 5;
-  collectionSize  = 0;
+  collectionSize = 0;
 
-  constructor(private menuService: MenusService) { }
+  constructor(private menuService: MenusService) {}
 
   ngOnInit(): void {
     this.menuService.getMenus().subscribe((data) => {
@@ -26,10 +26,25 @@ export class AllMenusComponent implements OnInit {
   }
 
   refreshMenu() {
-    this.displayedMenus = this.menus.map((menu, i) => ({_id: i+1,...menu}))
-    .slice(
-      (this.page - 1) * this.pageSize,
-      (this.page - 1) * this.pageSize + this.pageSize
+    this.displayedMenus = this.menus
+      .map((menu, i) => ({ _id: i + 1, ...menu }))
+      .slice(
+        (this.page - 1) * this.pageSize,
+        (this.page - 1) * this.pageSize + this.pageSize
+      );
+  }
+
+  onDeleteMenu(id: string) {
+    this.menuService.deleteMenu(id).subscribe(
+      (res: any) => {
+        this.menus = this.menus.filter((menu) => menu.id !== id);
+        this.refreshMenu();
+        this.alert = { type: 'success', message: res.response };
+      },
+      (err: any) => {
+        this.alert = { type: 'danger', message: err.error.response };
+        console.log(err);
+      }
     );
   }
 }

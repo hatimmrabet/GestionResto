@@ -37,4 +37,10 @@ export class MenusService {
     });
   }
 
+  deleteMenu(id: string) : Observable<any> {
+    return this.httpClient.delete(this.API + '/' + id, {
+      headers: this.authGuard.getTokenHeader(),
+    });
+  }
+
 }

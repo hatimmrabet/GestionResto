@@ -8,9 +8,11 @@
     <div class="col-10">
       <div class="container p-3">
 
+        <ngb-alert *ngIf="alert.message" class="text-center mt-2" [dismissible]="false" [type]="alert.type">{{
+          alert.message }}</ngb-alert>
+
         <h3>Tous les menus</h3>
         <a [routerLink]="['/create-menu']" role="button" class="btn btn-primary">Ajouter un menu</a>
-
 
         <table class="table table-striped">
           <thead>
@@ -40,7 +42,7 @@
                 <div class="btn-group-vertical w-100">
                   <a [routerLink]="['/details-menu',menu.id]" role="button" class="btn btn-primary btn-sm w-100">Details</a>
                   <a [routerLink]="['/edit-menu', menu.id]" role="button" class="btn btn-warning btn-sm">Edit</a>
-                  <a [routerLink]="['/delete-product', menu.id]" role="button" class="btn btn-danger btn-sm">Delete</a>
+                  <button (click)="onDeleteMenu(menu.id)" role="button" class="btn btn-danger btn-sm">Delete</button>
                 </div>
               </td>
             </tr>
