@@ -15,17 +15,34 @@ export class CategoriesService {
     private authGuardService: AuthGuardService
   ) {}
 
-  getCategories() : Observable<Categorie[]> {
+  getCategories(): Observable<Categorie[]> {
     return this.httpClient.get<Categorie[]>(this.API, {
       headers: this.authGuardService.getTokenHeader(),
     });
   }
 
-  getCategorie(id: number) : Observable<Categorie> {
+  getCategorie(id: number): Observable<Categorie> {
     return this.httpClient.get<Categorie>(`${this.API}/${id}`, {
       headers: this.authGuardService.getTokenHeader(),
     });
   }
 
+  createCategory(categorie: Categorie) {
+    return this.httpClient.post<Categorie>(this.API, categorie, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
+  updateCategory(categorie: Categorie): Observable<any> {
+    return this.httpClient.put(`${this.API}/${categorie.id}`, categorie, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
+  deleteCategory(categorie: Categorie): Observable<any> {
+    return this.httpClient.delete(`${this.API}/${categorie.id}`, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
 
 }

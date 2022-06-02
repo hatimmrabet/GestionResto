@@ -1,0 +1,82 @@
+<app-public-header></app-public-header>
+
+<div class="w-100">
+  <div class="row justify-content-start m-0">
+    <div class="col-2">
+      <app-private-sidebar></app-private-sidebar>
+    </div>
+    <div class="col-10">
+      <div class="container p-3">
+        <h3>Manage categories :</h3>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCreateCategory">Ajouter un
+          Category</button>
+
+        <div class="modal fade" id="modalCreateCategory" tabindex="-1" aria-labelledby="modalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Ajouter Category :</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="newCat.name">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="createCategory(newCat)"
+                  data-bs-dismiss="modal">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ngb-alert *ngIf="alert.message" class="text-center" [dismissible]="false" [type]="alert.type">{{
+          alert.message }}</ngb-alert>
+
+        <div class="row p-3">
+          <div *ngFor="let ingr of categories" class="col-3 p-2 border">
+            <div class="row align-items-center">
+              <p class="col mb-0">{{ingr.name}}</p>
+              <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#modal'+ingr.id">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteCategory(ingr)">Delete</button>
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal{{ingr.id}}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Edit Category : {{ingr.name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="ingr.name">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="editCategory(ingr)" data-bs-dismiss="modal">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -28,6 +28,7 @@ export class AllIngredientsComponent implements OnInit {
         // console.log(ingredient);
         this.ingredients.push(ingredient);
         this.alert = { type: 'success', message: 'Ingredient created' };
+        this.newIngr = new Ingredient();
       },
       (error) => {
         this.alert = { type: 'danger', message: 'Error creating ingredient' };

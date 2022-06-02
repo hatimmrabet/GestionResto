@@ -53,6 +53,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { EditMenuComponent } from './components/edit-menu/edit-menu.component';
 import { AllIngredientsComponent } from './components/all-ingredients/all-ingredients.component';
+import { AllCategoriesComponent } from './components/all-categories/all-categories.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { AllIngredientsComponent } from './components/all-ingredients/all-ingred
     EditProductComponent,
     EditMenuComponent,
     AllIngredientsComponent,
+    AllCategoriesComponent,
   ],
   imports: [
     BrowserModule,

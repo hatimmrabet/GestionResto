@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
+import { AllCategoriesComponent } from './components/all-categories/all-categories.component';
 import { AllIngredientsComponent } from './components/all-ingredients/all-ingredients.component';
 import { AllMenusComponent } from './components/all-menus/all-menus.component';
 import { AllOrdersComponent } from './components/all-orders/all-orders.component';
@@ -118,6 +119,12 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: { roles: [ERole.ADMIN, ERole.WORKER] },
     component: AllIngredientsComponent,
+  },
+  {
+    path: 'all-categories',
+    canActivate: [AuthGuardService],
+    data: { roles: [ERole.ADMIN, ERole.WORKER] },
+    component: AllCategoriesComponent,
   },
   { path: '**', redirectTo: 'index' },
 ];
