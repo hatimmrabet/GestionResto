@@ -21,4 +21,29 @@ export class IngredientsService {
     });
   }
 
+  getIngredient(id: number) : Observable<Ingredient> {
+    return this.httpClient.get<Ingredient>(this.API + '/' + id, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
+  createIngredient(ingredient: Ingredient) : Observable<Ingredient> {
+    return this.httpClient.post<Ingredient>(this.API, ingredient, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
+  updateIngredient(ingredient: Ingredient) : Observable<any> {
+    return this.httpClient.put(this.API + '/' + ingredient.id, ingredient, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
+  deleteIngredient(ingredient: Ingredient) : Observable<any> {
+    return this.httpClient.delete(this.API + '/' + ingredient.id, {
+      headers: this.authGuardService.getTokenHeader(),
+    });
+  }
+
+
 }
