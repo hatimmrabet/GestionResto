@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { windowWhen } from 'rxjs';
 import { ERole } from 'src/app/models/ERole.model';
 import { IUser } from 'src/app/models/IUser.model';
 import { UsersService } from 'src/app/services/users.service';
@@ -24,8 +25,9 @@ export class AllUsersComponent implements OnInit {
 
   deleteUser(id: string) {
     this.usersService.deleteUser(id).subscribe(
-      () => {
-        this.alert = { type: 'success', message: 'User deleted Successfully' };
+      (resp) => {
+        // console.log(resp);
+        this.alert = { type: 'success', message: resp.response };
         this.userslist = this.userslist.filter((user) => user.id !== id);
       },
       (error) => {

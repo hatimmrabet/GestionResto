@@ -48,9 +48,9 @@
                 </td>
                 <td class="text-center align-middle">
                   <div class="btn-group-vertical w-100">
-                    <a *ngIf="user.email != 'user@deleted'" [routerLink]="['/edit-user', user.id]"
+                    <a [routerLink]="['/edit-user', user.id]"
                       class="btn btn-warning btn-sm w-100">Edit</a>
-                    <button *ngIf="user.email != 'user@deleted'" class="btn btn-danger btn-sm w-100"
+                    <button class="btn btn-danger btn-sm w-100"
                       (click)="deleteUser(user.id)">Delete</button>
                   </div>
                 </td>

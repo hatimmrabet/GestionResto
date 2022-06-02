@@ -35,7 +35,7 @@ export class UsersService {
   }
 
   deleteUser(id: string) {
-    return this.httpClient.delete(this.API + '/' + id, {
+    return this.httpClient.delete<any>(this.API + '/' + id, {
       headers: this.authGuardService.getTokenHeader(),
     });
   }
