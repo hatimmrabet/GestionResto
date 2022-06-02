@@ -20,7 +20,6 @@ import { AuthComponent } from './components/auth/auth.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivateSidebarComponent } from './components/private-sidebar/private-sidebar.component';
-import { UsersListComponent } from './components/users-list/users-list.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { UsersService } from './services/users.service';
@@ -37,7 +36,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
-import { TestComponent } from './components/test/test.component';
 import { AllMenusComponent } from './components/all-menus/all-menus.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { CreateMenuComponent } from './components/create-menu/create-menu.component';
@@ -70,12 +68,10 @@ import { AllCategoriesComponent } from './components/all-categories/all-categori
     PublicAccueilContactComponent,
     ProfilComponent,
     PrivateSidebarComponent,
-    UsersListComponent,
     AllUsersComponent,
     CreateUserComponent,
     CreateProductComponent,
     AllProductsComponent,
-    TestComponent,
     AllMenusComponent,
     CreateMenuComponent,
     DisplayProductsComponent,
