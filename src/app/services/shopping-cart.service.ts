@@ -60,7 +60,7 @@ export class ShoppingCartService {
             commande.items[i].quantity++;
           }
           // à chaque ajout on ajoute le prix
-          commande.price += cmdItem.price;
+          commande.price = parseFloat((commande.price + cmdItem.price).toFixed(2));
           // console.log(commande.items);
           localStorage.setItem('cart', JSON.stringify(commande));
         })
@@ -111,7 +111,7 @@ export class ShoppingCartService {
             } else {
               commande.items.splice(i, 1);
             }
-            commande.price -= article.price;
+            commande.price = parseFloat((commande.price - article.price).toFixed(2));
             localStorage.setItem('cart', JSON.stringify(commande));
           }
         })
