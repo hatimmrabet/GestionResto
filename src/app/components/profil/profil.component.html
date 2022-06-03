@@ -1,5 +1,4 @@
 <app-public-header></app-public-header>
-
 <!-- Side bar -->
 <div class="w-100">
   <div class="row justify-content-start m-0">
@@ -7,27 +6,116 @@
       <app-private-sidebar></app-private-sidebar>
     </div>
     <div class="col-10">
-      <div class="container p-3">
-        <h3>Dashboard</h3>
-        <div class="row">
-          <div class="col-sm-6">
-          <div class="card">
-            <h5 class="card-header">Orders</h5>
-            <div class="card-body">
-              <h5 class="card-title">Today Orders : <span class="badge bg-success">+99</span></h5>
-              <p class="card-text">All orders</p>
-            </div>
-          </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="card">
-              <h5 class="card-header">New Users</h5>
-              <div class="card-body">
-                <h5 class="card-title">Today Users : <span class="badge bg-success">+5</span></h5>
-                <p class="card-text">All orders</p>
+
+    <div *ngIf="loading" class="spinner-border m-5" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+      <div *ngIf="!loading" class="container p-3">
+        <h3>Informations personnelles</h3>
+        <div class="p-5 mx-auto">
+
+          <ngb-alert *ngIf="alertSignup.message" class="text-center" [dismissible]="false" [type]="alertSignup.type">{{
+            alertSignup.message }}</ngb-alert>
+
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()">
+            <div class="row">
+              <div class="form-group col-md-3 mb-2">
+                <mat-form-field appearance="fill">
+                  <mat-label>Nom</mat-label>
+                  <input matInput formControlName="lastName" required>
+                  <mat-error *ngIf="signupControl['lastName'].touched && signupControl['lastName'].invalid">
+                    Your last name can not be empty.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group col-md-3 mb-2">
+                <mat-form-field appearance="fill">
+                  <mat-label>Prenom</mat-label>
+                  <input matInput formControlName="firstName" required>
+                  <mat-error *ngIf="signupControl['firstName'].touched && signupControl['firstName'].invalid">
+                    Your first name can not be empty.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group col-md-6 mb-2">
+                <mat-form-field appearance="fill">
+                  <mat-label>Adresse mail</mat-label>
+                  <input matInput placeholder="pat@example.com" formControlName="email" required>
+                  <mat-error *ngIf="signupControl['email'].touched && signupControl['email'].invalid">Your email
+                    address
+                    is invalid.
+                  </mat-error>
+                </mat-form-field>
               </div>
             </div>
-          </div>
+
+
+            <div class="row">
+
+              <div class="form-group col-md-6 mb-2">
+                <mat-form-field appearance="fill">
+                  <mat-label>Adresse postale</mat-label>
+                  <input matInput formControlName="address" placeholder="20 rue de la route, 59800, Lille" required>
+                  <mat-error *ngIf="signupControl['address'].touched && signupControl['address'].invalid">
+                    Your address can not be empty.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group col-md-6 mb-2">
+                <mat-form-field appearance="fill">
+                  <mat-label>Numero de telephone</mat-label>
+                  <input matInput type="tel" pattern="[0-9]*" id="phoneNumber" formControlName="phoneNumber" required>
+                  <mat-error *ngIf="signupControl['phoneNumber'].touched && signupControl['phoneNumber'].invalid">
+                    Your phone number should be at least 10 digits.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group col-md-3 mb-2">
+                <mat-form-field appearance="fill">
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="birthDate">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="signupControl['birthDate'].touched && signupControl['birthDate'].invalid">
+                    Your birthdate is invalid, you should have at least 13 years old.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+            </div>
+
+            <div class="form-check form-switch mb-2">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" (change)="changePassword()">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Changer le mot de passe</label>
+            </div>
+            <div *ngIf="canChangePassword" class="form-group col-md-6 mb-2">
+              <mat-form-field appearance="fill">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="signupControl['password'].touched && signupControl['password'].invalid">
+                  Your password should be at least 6 characters.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group mb-2">
+              <input type="submit" name="submit" value="Enregistrer" class="btn btn-primary font-weight-bold mt-1"
+                style="border-radius: 0.25rem; font-size: 16px;" [disabled]="signupForm.invalid" />
+              <button type="reset" class="btn btn-danger font-weight-bold mt-1 mx-3"
+                style="border-radius: 0.25rem; font-size: 16px;">Reset</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
