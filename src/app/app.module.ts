@@ -12,7 +12,6 @@ import { PublicAccueilComponent } from './components/public-accueil/public-accue
 import { PublicFooterComponent } from './components/public-footer/public-footer.component';
 import { PublicAccueilCarouselComponent } from './components/public-accueil/carousel/carousel.component';
 import { PublicAccueilMenuComponent } from './components/public-accueil/menu/menu.component';
-import { PublicAccueilPresentationComponent } from './components/public-accueil/presentation/presentation.component';
 import { PublicAccueilGalleryComponent } from './components/public-accueil/gallery/gallery.component';
 import { PublicAccueilContactComponent } from './components/public-accueil/contact/contact.component';
 import { ProfilComponent } from './components/profil/profil.component';
@@ -63,7 +62,6 @@ import { AllCategoriesComponent } from './components/all-categories/all-categori
     PublicFooterComponent,
     PublicAccueilCarouselComponent,
     PublicAccueilMenuComponent,
-    PublicAccueilPresentationComponent,
     PublicAccueilGalleryComponent,
     PublicAccueilContactComponent,
     ProfilComponent,
