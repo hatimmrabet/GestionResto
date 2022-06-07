@@ -61,7 +61,7 @@ export class ShoppingCartService {
           }
           // à chaque ajout on ajoute le prix
           commande.price = parseFloat((commande.price + cmdItem.price).toFixed(2));
-          // console.log(commande.items);
+          // console.log(commande.price);
           localStorage.setItem('cart', JSON.stringify(commande));
         })
       )

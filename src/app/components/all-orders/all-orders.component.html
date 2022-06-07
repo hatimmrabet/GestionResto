@@ -23,6 +23,11 @@
             </tr>
           </thead>
           <tbody>
+            <tr *ngIf="orders.length === 0">
+              <td colspan="7">
+                <h6 class="text-center">Il n'y a aucune commande</h6>
+              </td>
+            </tr>
             <tr *ngFor="let order of displayedOrders; index as i">
               <th scope="row">{{order.numero}}</th>
               <td>
