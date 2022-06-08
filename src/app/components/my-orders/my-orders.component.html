@@ -56,8 +56,10 @@
               </td>
               <td>{{ order.price }} €</td>
               <td class="text-center align-middle">
-                <div class="btn-group-vertical">
-                  <button *ngIf="order.etat == EOrderStatus.PENDING" role="button" class="btn btn-danger btn-sm"
+                <div *ngIf="order.etat == EOrderStatus.PENDING" class="btn-group-vertical">
+                  <button role="button" class="btn btn-warning btn-sm"
+                    (click)="editOrder(order)">Modifier</button>
+                  <button role="button" class="btn btn-danger btn-sm"
                     (click)="changeStatus(order, EOrderStatus.CANCELED)">Annuler</button>
                 </div>
               </td>

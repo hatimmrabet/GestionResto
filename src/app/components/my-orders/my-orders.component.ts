@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/Article';
 import { Commande } from 'src/app/models/Commande.model';
 import { EOrderStatus } from 'src/app/models/EOrderStatus.model';
+import { ERole } from 'src/app/models/ERole.model';
 import { Menu } from 'src/app/models/Menu.model';
 import { OrdersService } from 'src/app/services/orders.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -20,7 +22,7 @@ export class MyOrdersComponent implements OnInit {
   pageSize = 5;
   collectionSize = 0;
 
-  constructor(private orderService: OrdersService) {}
+  constructor(private orderService: OrdersService, private shoppingCartService: ShoppingCartService) {}
 
   ngOnInit(): void {
     this.orderService.getUserOrders().subscribe((data) => {
@@ -68,5 +70,13 @@ export class MyOrdersComponent implements OnInit {
       window.location.reload();
     }
   );
+  }
+
+  editOrder(order: Commande) {
+    this.shoppingCartService.clearCart()
+    for(let article of order.items) {
+      this.shoppingCartService.addToCart(article.article);
+    }
+    this.changeStatus(order, EOrderStatus.CANCELED);
   }
 }
