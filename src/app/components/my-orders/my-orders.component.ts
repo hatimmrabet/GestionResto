@@ -75,7 +75,9 @@ export class MyOrdersComponent implements OnInit {
   editOrder(order: Commande) {
     this.shoppingCartService.clearCart()
     for(let article of order.items) {
-      this.shoppingCartService.addToCart(article.article);
+      for(let i = 0; i < article.quantity; i++) {
+        this.shoppingCartService.addToCart(article.article);
+      }
     }
     this.changeStatus(order, EOrderStatus.CANCELED);
   }
