@@ -39,7 +39,9 @@
         </mat-selection-list>
       </form>
 
+
       <div class="row text-center p-2 px-5">
+        <p class="text-muted" *ngIf="!canOrder()">*Vous devez avoir un seul produits par categorie pour pouvoir ajouter au panier.</p>
         <button class="btn btn-primary" (click)="addToCart()" [disabled]="!canOrder()">Ajouter au Panier</button>
       </div>
     </div>
