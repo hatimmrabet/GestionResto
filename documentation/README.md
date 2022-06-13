@@ -16,7 +16,7 @@ Ona utilisé le framwork Spring Boot pour la communication avec la base de donn�
 Le code de la partie backend est disponible sur le [Github](https://github.com/hatimmrabet/RestaurantAPI)
 
 **Pour le frontend :**
-On a utilisé le framework Angular 13 pour le frontend. Le code est disponible sur le [Github](https://github.com/hatimmrabet/MyRestaurant)
+On a utilisé le framework Angular 13 pour le frontend. Le code est disponible sur le [Github](https://github.com/hatimmrabet/GestionResto)
 
 
 ## Realisation
