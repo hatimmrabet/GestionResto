@@ -1,12 +1,12 @@
 <!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar ftco-navbar-light" id="ftco-navbar">
   <div class="container">
     <a class="navbar-brand" routerLink="/"><img src="assets/img/logo/logo_black.png" style="width: 75px;" /></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="fa fa-bars"></span> Menu
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="ftco-nav">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav m-auto">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <a routerLink="/index" class="nav-link">Home</a>
@@ -19,10 +19,12 @@
             <span class="badge bg-dark" style="font-size: 9px;">{{(nbItems() | async)}}</span>
           </a>
         </li>
-        <li *ngIf="!isLoggedIn" class="nav-item text-end" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <li *ngIf="!isLoggedIn" class="nav-item" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
           <a routerLink="/auth" class="nav-link">Se connecter <i class="bi bi-person-circle"></i></a>
         </li>
-        <li *ngIf="isLoggedIn" class="nav-item text-end" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <li *ngIf="isLoggedIn" class="nav-item" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
           <a routerLink="/profil" class="nav-link">Profil <i class="bi bi-person-circle"></i></a>
         </li>
       </ul>
