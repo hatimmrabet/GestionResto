@@ -3,8 +3,8 @@
 <div class="container p-3">
   <h3>Your Shopping Cart:</h3>
 
-  <div class="row">
-    <div class="col-8">
+  <div class="row gy-3">
+    <div class="col-md-8">
       <div class="card">
         <h5 class="card-header">Votre commande</h5>
         <div class="card-body">
@@ -15,7 +15,7 @@
 
           <div *ngFor="let item of cmd.items" class="border-bottom p-2 row">
 
-            <div class="col-9">
+            <div class="col-md-9">
               <h5 class="card-title">{{ item.quantity }}x {{ item.article.name }}</h5>
               <p class="card-text" style="margin-bottom: 0px;" *ngIf="getProductsFromArticle(item.article).length != 0">
                 Les produits :</p>
@@ -23,7 +23,7 @@
                 *ngFor="let prod of getProductsFromArticle(item.article)"> - {{prod.name}}</p>
             </div>
 
-            <div class="col-3">
+            <div class="col-md-3">
               <p class="card-text" style="margin-bottom: 0px;">Prix unitaire : {{item.article.price }} €</p>
               <p class="card-text">Prix Total : {{ (item.article.price * item.quantity).toFixed(2) }} €</p>
               <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
@@ -38,7 +38,8 @@
         </div>
       </div>
     </div>
-    <div class="col-4">
+
+    <div class="col-md-4">
       <div class="card">
         <h5 class="card-header">Payement</h5>
         <div class="card-body">
@@ -48,8 +49,8 @@
           </div>
 
           <form [formGroup]="form" class="mb-3 row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Type de commande</label>
-            <div class="col-sm-8">
+            <label for="staticEmail" class="col-md-sm-4 col-md-form-label">Type de commande</label>
+            <div class="col-md-sm-8">
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Select an option</mat-label>
                 <mat-select formControlName="type" [(value)]="selectedType">
