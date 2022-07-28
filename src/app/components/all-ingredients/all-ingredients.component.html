@@ -2,10 +2,10 @@
 
 <div class="w-100">
   <div class="row justify-content-start m-0">
-    <div class="col-2">
+    <div class="col-lg-2">
       <app-private-sidebar></app-private-sidebar>
     </div>
-    <div class="col-10">
+    <div class="col-lg-10">
       <div class="container p-3">
         <h3>Manage ingredients :</h3>
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCreateIngredient">Ajouter un ingredient</button>
@@ -37,7 +37,7 @@
           alert.message }}</ngb-alert>
 
         <div class="row p-3">
-            <div *ngFor="let ingr of ingredients" class="col-3 p-2 border">
+            <div *ngFor="let ingr of ingredients" class="col-sm-3 p-2 border">
               <div class="row align-items-center">
                 <p class="col mb-0">{{ingr.name}}</p>
                 <div class="col d-grid gap-2 d-md-flex justify-content-md-end">

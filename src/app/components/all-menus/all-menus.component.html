@@ -2,10 +2,10 @@
 
 <div class="w-100">
   <div class="row justify-content-start m-0">
-    <div class="col-2">
+    <div class="col-lg-2">
       <app-private-sidebar></app-private-sidebar>
     </div>
-    <div class="col-10">
+    <div class="col-lg-10">
       <div class="container p-3">
 
         <ngb-alert *ngIf="alert.message" class="text-center mt-2" [dismissible]="false" [type]="alert.type">{{
@@ -14,41 +14,43 @@
         <h3>Tous les menus</h3>
         <a [routerLink]="['/create-menu']" role="button" class="btn btn-primary">Ajouter un menu</a>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col" class="col">#</th>
-              <th scope="col" class="col-2">Name</th>
-              <th scope="col" class="col-4">Description</th>
-              <th scope="col" class="col-3">Produits</th>
-              <th scope="col" class="col">Price</th>
-              <th scope="col" class="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let menu of displayedMenus; index as i">
-              <th scope="row">
-                <img [src]="'http://localhost:8080/content/images/'+menu.image" class="me-2" style="width: 50px">
-              </th>
-              <td>{{ menu.name }}</td>
-              <td >{{ menu.description }}</td>
-              <td>
-                <ul style="list-style-type: none; padding: 0px;">
-                  <li *ngFor="let prod of menu.produits">- {{prod.name}}</li>
-                </ul>
-              </td>
-              <td>{{ menu.price | number }} €</td>
-              <td class="text-center align-middle">
-                <div class="btn-group-vertical w-100">
-                  <a [routerLink]="['/details-menu',menu.id]" role="button" class="btn btn-primary btn-sm w-100">Details</a>
-                  <a [routerLink]="['/edit-menu', menu.id]" role="button" class="btn btn-warning btn-sm">Edit</a>
-                  <button (click)="onDeleteMenu(menu.id)" role="button" class="btn btn-danger btn-sm">Delete</button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="col">#</th>
+                <th scope="col" class="col-2">Name</th>
+                <th scope="col" class="col-4">Description</th>
+                <th scope="col" class="col-3">Produits</th>
+                <th scope="col" class="col">Price</th>
+                <th scope="col" class="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let menu of displayedMenus; index as i">
+                <th scope="row">
+                  <img [src]="'http://localhost:8080/content/images/'+menu.image" class="me-2" style="width: 50px">
+                </th>
+                <td>{{ menu.name }}</td>
+                <td>{{ menu.description }}</td>
+                <td>
+                  <ul style="list-style-type: none; padding: 0px;">
+                    <li *ngFor="let prod of menu.produits">- {{prod.name}}</li>
+                  </ul>
+                </td>
+                <td>{{ menu.price | number }} €</td>
+                <td class="text-center align-middle">
+                  <div class="btn-group-vertical w-100">
+                    <a [routerLink]="['/details-menu',menu.id]" role="button"
+                      class="btn btn-primary btn-sm w-100">Details</a>
+                    <a [routerLink]="['/edit-menu', menu.id]" role="button" class="btn btn-warning btn-sm">Edit</a>
+                    <button (click)="onDeleteMenu(menu.id)" role="button" class="btn btn-danger btn-sm">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="d-flex justify-content-between p-2">
           <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
             (pageChange)="refreshMenu()">

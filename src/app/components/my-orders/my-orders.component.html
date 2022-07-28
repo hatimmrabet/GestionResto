@@ -2,70 +2,72 @@
 
 <div class="w-100">
   <div class="row justify-content-start m-0">
-    <div class="col-2">
+    <div class="col-lg-2">
       <app-private-sidebar></app-private-sidebar>
     </div>
-    <div class="col-10">
+    <div class="col-lg-10">
       <div class="container p-3">
 
         <h3>Toutes mes commandes</h3>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Etat</th>
-              <th scope="col">Date</th>
-              <th scope="col">User</th>
-              <th scope="col">Produits</th>
-              <th scope="col">Price</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngIf="orders.length === 0">
-              <td colspan="7">
-                <h6 class="text-center">Vous n'avez pas de commandes</h6>
-              </td>
-            </tr>
-            <tr *ngFor="let order of displayedOrders; index as i">
-              <th scope="row">{{order.numero}}</th>
-              <td>
-                <span *ngIf="order.etat == EOrderStatus.PENDING" class="badge bg-secondary w-100">{{
-                  getStatus(order.etat) }}</span>
-                <span *ngIf="order.etat == EOrderStatus.IN_PROGRESS" class="badge bg-primary w-100">{{
-                  getStatus(order.etat) }}</span>
-                <span *ngIf="order.etat == EOrderStatus.COMPLETED" class="badge bg-warning w-100">{{
-                  getStatus(order.etat) }}</span>
-                <span *ngIf="order.etat == EOrderStatus.DELIVERED" class="badge bg-success w-100">{{
-                  getStatus(order.etat) }}</span>
-                <span *ngIf="order.etat == EOrderStatus.CANCELED" class="badge bg-danger w-100">{{ getStatus(order.etat)
-                  }}</span>
-              </td>
-              <td>{{ order.date | date:'dd/MM/yyyy'}} </td>
-              <td>{{ order.client.firstName }} {{order.client.lastName}} </td>
-              <td>
-                <ul style="list-style-type: none; padding: 0px;">
-                  <li *ngFor="let item of order.items">{{item.quantity}}x {{item.article.name}}
-                    <ul *ngIf="MenuProducts(item.article).length > 0"
-                      style="list-style-type: none; padding: 0px; margin-left: 20px;">
-                      <li *ngFor="let prod of MenuProducts(item.article)"> - {{prod.name}}</li>
-                    </ul>
-                  </li>
-                </ul>
-              </td>
-              <td>{{ order.price }} €</td>
-              <td class="text-center align-middle">
-                <div *ngIf="order.etat == EOrderStatus.PENDING" class="btn-group-vertical">
-                  <button role="button" class="btn btn-warning btn-sm"
-                    (click)="editOrder(order)">Modifier</button>
-                  <button role="button" class="btn btn-danger btn-sm"
-                    (click)="changeStatus(order, EOrderStatus.CANCELED)">Annuler</button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Date</th>
+                <th scope="col">User</th>
+                <th scope="col">Produits</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="orders.length === 0">
+                <td colspan="7">
+                  <h6 class="text-center">Vous n'avez pas de commandes</h6>
+                </td>
+              </tr>
+              <tr *ngFor="let order of displayedOrders; index as i">
+                <th scope="row">{{order.numero}}</th>
+                <td>
+                  <span *ngIf="order.etat == EOrderStatus.PENDING" class="badge bg-secondary w-100">{{
+                    getStatus(order.etat) }}</span>
+                  <span *ngIf="order.etat == EOrderStatus.IN_PROGRESS" class="badge bg-primary w-100">{{
+                    getStatus(order.etat) }}</span>
+                  <span *ngIf="order.etat == EOrderStatus.COMPLETED" class="badge bg-warning w-100">{{
+                    getStatus(order.etat) }}</span>
+                  <span *ngIf="order.etat == EOrderStatus.DELIVERED" class="badge bg-success w-100">{{
+                    getStatus(order.etat) }}</span>
+                  <span *ngIf="order.etat == EOrderStatus.CANCELED" class="badge bg-danger w-100">{{
+                    getStatus(order.etat)
+                    }}</span>
+                </td>
+                <td>{{ order.date | date:'dd/MM/yyyy'}} </td>
+                <td>{{ order.client.firstName }} {{order.client.lastName}} </td>
+                <td>
+                  <ul style="list-style-type: none; padding: 0px;">
+                    <li *ngFor="let item of order.items">{{item.quantity}}x {{item.article.name}}
+                      <ul *ngIf="MenuProducts(item.article).length > 0"
+                        style="list-style-type: none; padding: 0px; margin-left: 20px;">
+                        <li *ngFor="let prod of MenuProducts(item.article)"> - {{prod.name}}</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </td>
+                <td>{{ order.price }} €</td>
+                <td class="text-center align-middle">
+                  <div *ngIf="order.etat == EOrderStatus.PENDING" class="btn-group-vertical">
+                    <button role="button" class="btn btn-warning btn-sm" (click)="editOrder(order)">Modifier</button>
+                    <button role="button" class="btn btn-danger btn-sm"
+                      (click)="changeStatus(order, EOrderStatus.CANCELED)">Annuler</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="d-flex justify-content-between p-2">
           <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
