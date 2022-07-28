@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
-import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProductsService } from './services/products.service';
 import { PublicHeaderComponent } from './components/public-header/public-header.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
@@ -56,7 +55,6 @@ import { AllCategoriesComponent } from './components/all-categories/all-categori
   declarations: [
     AppComponent,
     AuthComponent,
-    OneProductComponent,
     PublicHeaderComponent,
     PublicAccueilComponent,
     PublicFooterComponent,

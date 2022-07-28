@@ -17,7 +17,6 @@ import { EditMenuComponent } from './components/edit-menu/edit-menu.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
-import { OneProductComponent } from './components/one-product/one-product.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { PublicAccueilComponent } from './components/public-accueil/public-accueil.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
@@ -25,7 +24,6 @@ import { ERole } from './models/ERole.model';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'products', component: OneProductComponent },
   { path: 'index', component: PublicAccueilComponent },
   { path: 'auth', component: AuthComponent },
   {
